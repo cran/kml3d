@@ -1,0 +1,51 @@
+#useDynLib(kml)
+
+export(
+       ## function
+       #"meanNA","medianNA","sdNA","varNA","rangeNA","which.minNA",
+       ## Partition
+       "partition","ordered",
+       ## ParLongData
+       "parLongData","parTraj","parMean",
+       ## parWindows
+       "parWindows","windowsCut",
+       ## LongData
+       "as.longData",#"as.longData.data.frame","as.longData.array",
+       "scale",
+       "gald","generateArtificialLongData",
+       ## LongDataPlot
+       "plot","calculTrajMean",#"resizePartition","calculTrajMeanPoint","legendCol","varNumAndName","adjustGraph3d
+       "saveTrianglesAsASY","makeLatexFile",
+       ## Distance
+       "dist3d","matDist3d",
+       ## Clustering
+       "calculCriterion","clustering",
+       ## ListClustering
+       "listClustering","regroup","ordered","plot",
+       ## ClusterLongData
+       "plot","cld","as.cld",
+       ## parKml
+       "parKml",
+       ## Kml
+       "affectIndiv"
+       )
+
+exportMethods(
+              "longData","imputation","restaureRealData","expandParLongData","plot3d","plot3dPdf",
+              "clusterLongData","as.clusterLongData","plot3d","partitionInitialise","kml",
+              "exportClustering","choice"
+              )
+
+exportClasses(
+              "Partition",
+              "ParLongData",
+              "ParWindows",
+              "ParKml",
+#              "ParChoice",
+              "LongData",
+              "Clustering",
+              "ListClustering",
+              "ClusterLongData"
+              )
+
+import(methods,graphics,rgl,misc3d)
