@@ -31,7 +31,7 @@ affectIndiv(traj, clustersCenter, distance = dist3d)
   \code{\link{dist3d}} is the euclidean distance but the user can define some non-classical distance.
 
   Note that \code{affectIndiv} does not work with
-  a \code{\linkS4class{ClusterizLongData}} object but with an array of trajectories.
+  a \code{\linkS4class{ClusterLongData}} object but with an array of trajectories.
 
   \code{affectIndiv} used with \code{\link{calculTrajMean}} simulates
   one k-means step (see examples).

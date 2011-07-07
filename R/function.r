@@ -17,7 +17,14 @@ which.minNA <- function(x){
 }
 
 ### TRUE for Truly NA : false for NaN
-is.tna <- function(x){return(is.na(x)&!is.nan(x))}
+is.tna <- function(x){
+    if(length(x)==0){
+        return(TRUE)
+    }else{
+        if(is.list(x)){x <- unlist(x)}else{}
+        return(is.na(x)&!is.nan(x))
+    }
+}
 
 
 ### Printing long line shortening them
