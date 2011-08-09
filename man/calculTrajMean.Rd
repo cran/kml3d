@@ -25,7 +25,7 @@ calculTrajMean(traj, part,centerMethod=function(x){mean(x,na.rm=TRUE)})
   evaluated. This is what \code{calculTrajMean} does.
 
   Note that \code{calculTrajMean} does not work with
-  \code{\linkS4class{ClusterizLongData}} object but with an array of trajectories.
+  \code{\linkS4class{ClusterLongData}} object but with an array of trajectories.
 
   \code{affectIndiv} used with \code{\link{calculTrajMean}} simulates one k-means step.
 }

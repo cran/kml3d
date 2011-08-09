@@ -19,7 +19,7 @@
 \description{
   \code{as.clusterizLongData} (or \code{as.cld}) turns a
   \code{data.frame}, an \code{array} or a \code{\linkS4class{LongData}} into
-  an object of class \code{\linkS4class{ClusterizLongData}}.
+  an object of class \code{\linkS4class{ClusterLongData}}.
 }
 
 \usage{
@@ -77,7 +77,7 @@
 
 \details{
   \code{as.clusterizLongData} (or \code{as.cld}) turns a \code{data.frame} into
-  an object of class \code{\linkS4class{ClusterizLongData}} according to
+  an object of class \code{\linkS4class{ClusterLongData}} according to
   its arguments.
 }
 

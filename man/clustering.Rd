@@ -65,11 +65,6 @@ clustering(xLongData, yPartition, convergenceTime = 0, multiplicity = 1,criterio
 }
 
 
-\references{Article "KmL: K-means for Longitudinal Data", in
-  Computational Statistics, Volume 25, Issue 2 (2010), Page 317. \cr
-  Web site: \url{http://christophe.genolini.free.fr/kml}
-}
-
 \section{Author(s)}{
   Christophe Genolini\cr
   INSERM U669 / PSIGIAM: Paris Sud Innovation Group in Adolescent Mental Health\cr
