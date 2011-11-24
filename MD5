@@ -1,14 +1,14 @@
-361cf62439ea2ccd768f36e9cd4c3c15 *DESCRIPTION
+401380bacc04efe86f42c73351725c5e *DESCRIPTION
 dda17db212fe6543109862177c4a11da *NAMESPACE
 d52d94f47ae583f8d01e253b5c22a510 *NAMESPACE3
-1c2b7327ed40416cb275cb4a960a6c45 *R/clusterLongData.r
+16e10811f229626dae0f0c2b6f2acf4f *R/clusterLongData.r
 fc5976234ec3176e20999ca071d58739 *R/clustering.r
 28f4679fc4d56ee44e72c9ffcb80dec4 *R/distance.r
 c36b1b2dba7b3917492ec4d2d82d0953 *R/function.r
 e03c5090e152307ef5f71d7efc55dbcb *R/global.r
 50d3738fbc96ad3dcde31439d95b5343 *R/kml.r
 48c89071287184c08c9e0a6cf43581a5 *R/listClustering.r
-245cd97e0a0685d824159290d79f551f *R/longData.r
+4a9440333c5edfa73700f28443b6510a *R/longData.r
 b236130a683e617035fa7d9229fedfd5 *R/longDataPlot.r
 d54a1c707c73bcfe1e9644b5178c17ef *R/parChoice.r
 f6542c8fb647334b751fdf7e0c7b06d5 *R/parKml.r
@@ -38,7 +38,7 @@ ee18d391a19ff66af6c9d7511a40b3ae *man/expandParLongData.Rd
 9939b262f5fbcfc43d5e598a443422e5 *man/generateArtificialLongData.Rd
 7ddace4bad0677faafcfdbc722dc040a *man/imputation.Rd
 db905b080997c055c34041fd1558ffe2 *man/kml.Rd
-206d5f3ff700c79b6778f3593fe9c8c0 *man/kml3d-package.Rd
+e8b5f9d83e9e94bdd790cab8ff46cb57 *man/kml3d-package.Rd
 3ac2e9c13fd6fd0bf5358409f47a4b17 *man/longData.Rd
 9ca1b64e7e5d986ad52bf51ba7a44945 *man/makeLatexFile.Rd
 bff858151aabb6c608767b819e2de51a *man/matDist3d.Rd
