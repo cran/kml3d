@@ -12,8 +12,8 @@
   \tabular{ll}{
     Package: \tab kml3d\cr
     Type: \tab Package\cr
-    Version: \tab 0.5\cr
-    Date: \tab 2011-07-07\cr
+    Version: \tab 0.6\cr
+    Date: \tab 2011-11-24\cr
     License: \tab GPL (>= 2)\cr
     Lazyload: \tab yes\cr
     Depends: \tab methods,graphics,rgl,misc3d\cr

@@ -52,7 +52,7 @@ setMethod("as.clusterLongData","data.frame",
         if(missing(idAll)){idAll <- data[,1]}else{}
         if(missing(varNames)){varNames <- names(timeDataFrame)}else{}
         if(missing(time)){time <- 1:length(timeDataFrame[[1]])}else{}
-        matr <- as.matrix(data[,na.omit(unlist(timeDataFrame))])
+        matr <- as.matrix(data[,sort(na.omit(unlist(timeDataFrame)))])
         traj <- array(matr[,rank(unlist(timeDataFrame),na.last="keep")],c(length(idAll),length(time),length(varNames)))
         return(clusterLongData(traj=traj,idAll=idAll,time=time,varNames=varNames,maxNA=maxNA,criterionActif=criterionActif))
     }
