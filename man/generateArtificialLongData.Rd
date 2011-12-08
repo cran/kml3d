@@ -90,7 +90,7 @@ generateArtificialLongData(nbEachClusters=c(50,50,50),time=0:10,varNames=c("V1",
 ### Default example
 ex1 <- generateArtificialLongData()
 ex1
-kml(ex1,3,1)
+kml3d(ex1,3,1)
 plot3d(ex1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -41,7 +41,7 @@ NAtrunc <- function(x) x[1:max(which(!is.na(x)))]
 cat("\n### Constantes ###\n")
 MAX_CLUSTERS <- 26
 CLUSTER_NAMES <- paste("c",2:MAX_CLUSTERS,sep="")
-CRITERION_MIN_OR_MAX<- c(calinski=1,test=1,test2=-1)
+CRITERION_MIN_OR_MAX<- c(calinski=1,ray=-1,davies=-1,random=1)
 DISTANCE_METHODS <- c("manhattan", "euclidean", "minkowski", "maximum", "canberra", "binary")
 CHOICE_STYLE <- list(
     typeTraj=c("l","l","n"),

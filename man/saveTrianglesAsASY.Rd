@@ -35,7 +35,7 @@ saveTrianglesAsASY(scene, filename = "scene.asy")
 \examples{
   ### Generating the data
   myCld <- gald(c(5,5,5))
-  kml(myCld,3,1)
+  kml3d(myCld,3,1)
 
   ### Creation of the scene
   scene <- plot3dPdf(myCld)

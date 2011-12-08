@@ -8,6 +8,6 @@ setGeneric("plot3dPdf",function(x,y,varY=1,varZ=2){standardGeneric("plot3dPdf")}
 setGeneric("clusterLongData",function(traj,idAll,time,varNames,maxNA=length(time)-2,criterionActif="calinski"){standardGeneric("clusterLongData")})
 setGeneric("as.clusterLongData",function(data,...){standardGeneric("as.clusterLongData")})
 setGeneric("partitionInitialise",function(nbClusters,lengthPart,method="randomK",matrixDist){standardGeneric("partitionInitialise")})
-setGeneric("kml",function(object,nbClusters=2:6,nbRedrawing=3,toPlot="none",paramKml=parKml(),criterionNames=c("calinski","test")){standardGeneric("kml")})
+setGeneric("kml3d",function(object,nbClusters=2:6,nbRedrawing=20,toPlot="none",paramKml=parKml(),criterionNames=c("calinski","ray","davies","random")){standardGeneric("kml3d")})
 setGeneric("exportClustering",function(object,y,nameObject,typeGraph="bmp",paramTraj=parTraj(),paramMean=parMean(),paramWindows=windowsCut(object['nbVar']),...)standardGeneric("exportClustering"))
 setGeneric("choice",function(object,typeGraph="bmp",...){standardGeneric("choice")})

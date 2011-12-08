@@ -13,7 +13,7 @@ parKml(saveFreq = 100, maxIt = 200, imputationMethod = "LI-Bissectrice", distanc
 \arguments{
   \item{saveFreq}{\code{[numeric]}: Long computations can take several
     days. So it is possible to save the object \code{\linkS4class{ClusterLongData}}
-    on which works \code{\link{kml}} once in a while. \code{saveFreq}
+    on which works \code{\link{kml3d}} once in a while. \code{saveFreq}
     defines the frequency of the saving
     process. The \code{ClusterLongData} is saved every \code{saveFreq}
     clustering calculations. The object is saved in the file
@@ -96,7 +96,7 @@ cld1 <- generateArtificialLongData(c(15,15,15))
 (option1 <- parKml())
 (option2 <- parKml(distanceName="maximum",centerMethod=function(x)median(x,na.rm=TRUE)))
 
-### Running kml We suspect 2, 3, 4 or 5 clusters, we want 3 redrawing.
-kml(cld1,4,1,toPlot="both",paramKml=option1)
-kml(cld1,4,1,toPlot="both",paramKml=option2)
+### Running kml3d We suspect 2, 3, 4 or 5 clusters, we want 3 redrawing.
+kml3d(cld1,4,1,toPlot="both",paramKml=option1)
+kml3d(cld1,4,1,toPlot="both",paramKml=option2)
 }

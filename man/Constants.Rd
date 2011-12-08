@@ -45,7 +45,7 @@ CHOICE_STYLE
 }
 
 \examples{
-### Maximum number of clusters that kml can deal with
+### Maximum number of clusters that kml3d can deal with
 #2:MAX_CLUSTERS
 
 ### Names of the field that save clusters in object 'ClusterLongData'
