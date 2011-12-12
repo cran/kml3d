@@ -77,7 +77,7 @@
 \examples{
   ### Generating the data
   myCld <- gald(c(5,5,5))
-  kml(myCld,3:4,1)
+  kml3d(myCld,3:4,1)
 
   ### Creation of the scene
   scene <- plot3dPdf(myCld)

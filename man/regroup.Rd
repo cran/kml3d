@@ -53,8 +53,8 @@ regroup(object,toOrder=TRUE)
 ### Some data easy to cluster
 myCld <- gald(c(15,15,15),functionNoise=function(t){c(rnorm(1,0,1),rnorm(1,0,1))})
 
-### run kml
-kml(myCld,,3)
+### run kml3d
+kml3d(myCld,,3)
 plot(myCld)
 
 ### Some clustering has been found several time

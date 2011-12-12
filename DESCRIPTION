@@ -1,8 +1,8 @@
 Package: kml3d
 Type: Package
 Title: K-means for joint Longitudinal data
-Version: 0.6
-Date: 2011-11-24
+Version: 0.7
+Date: 2011-12-12
 Author: Christophe Genolini
 Maintainer: Christophe Genolini <genolini@u-paris10.fr>
 Description: KmL3D is an implementation of k-means specificaly design
@@ -18,5 +18,5 @@ Collate: global.r function.r partition.r parLongData.r parWindows.r
         listClustering.r clusterLongData.r parKml.r parChoice.r kml.r
 Depends: methods,clv,rgl,misc3d
 Repository: CRAN
-Date/Publication: 2011-11-24 13:03:34
-Packaged: 2011-11-24 09:55:22 UTC; GENOLLINI
+Date/Publication: 2011-12-08 19:01:49
+Packaged: 2011-12-07 16:04:58 UTC; GENOLLINI

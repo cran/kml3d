@@ -12,7 +12,7 @@ choice(object, typeGraph = "bmp",...)
 }
 
 \arguments{
-  \item{object}{\code{[ClusterLongData]}: Object containing the trajectories and all the clusterizations found by \code{\link{kml}},
+  \item{object}{\code{[ClusterLongData]}: Object containing the trajectories and all the clusterizations found by \code{\link{kml3d}},
     from whom the user want to export some \code{\linkS4class{Clustering}}.}
 
   \item{typeGraph}{\code{[character]} for every selected \code{clustering}, \code{choice} export some graphs. \code{typeGraph} set
@@ -24,7 +24,7 @@ choice(object, typeGraph = "bmp",...)
 
 
 \details{
-  \code{choice} is a function that lets the user see the \code{\link{Clustering}} found by \code{\link{kml}}.
+  \code{choice} is a function that lets the user see the \code{\link{Clustering}} found by \code{\link{kml3d}}.
   At first, \code{choice} opens a graphics window. On the left side are
   qualities criterion of all the \code{Clustering} contained in \code{Object}.
   One \code{Clustering} is 'active', it is the one marked by a black dot.
@@ -96,7 +96,7 @@ choice(object, typeGraph = "bmp",...)
 cld1 <- gald(c(15,15,15))
 
 ### Clusterisation
-kml(cld1,nbRedrawing=3)
+kml3d(cld1,nbRedrawing=3)
 
 ### Selection of the clusterization we want
 #     (linux does not support getGraphicsEvent...

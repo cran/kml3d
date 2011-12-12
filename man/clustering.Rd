@@ -9,7 +9,7 @@
   \code{clustering} is the constructor of the class \code{\linkS4class{Clustering}}.
 }
 \usage{
-clustering(xLongData, yPartition, convergenceTime = 0, multiplicity = 1,criterionNames = c("calinski", "test"),
+clustering(xLongData, yPartition, convergenceTime = 0, multiplicity = 1,criterionNames = c("calinski", "ray","davies","random"),
   algorithm = c(algo = "kmeans", startCond = "", imputation = "LI-Bissectrice")
 )
 }
@@ -37,7 +37,7 @@ clustering(xLongData, yPartition, convergenceTime = 0, multiplicity = 1,criterio
 }
 
 \details{
-  In \code{KmL}, strickly speaking, a \code{\link{Partition}} is just a sequence of
+  In \code{Kml3d}, strickly speaking, a \code{\link{Partition}} is just a sequence of
   letters (independent of any trajectories) ; a \code{Clustering} is
   a \code{Partition} associated with a set of trajectories
   with some additional

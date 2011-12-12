@@ -90,7 +90,7 @@ Three files and a graph.
 #############
 ### Creating a ClusterizLongData object, with 3 cluterings (5 clusters each)
 myCld <- gald(c(15,15,15))
-kml(myCld,5,3)
+kml3d(myCld,5,3)
 
 ### Exporting the second clustering in pdf format
 exportClustering(myCld,y=c(5,2),nameObject="myCld-5-2",typeGraph="bmp")

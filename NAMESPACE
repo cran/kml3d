@@ -32,7 +32,7 @@ export(
 
 exportMethods(
               "longData","imputation","restaureRealData","expandParLongData","plot3d","plot3dPdf",
-              "clusterLongData","as.clusterLongData","plot3d","partitionInitialise","kml",
+              "clusterLongData","as.clusterLongData","plot3d","partitionInitialise","kml3d",
               "exportClustering","choice"
               )
 

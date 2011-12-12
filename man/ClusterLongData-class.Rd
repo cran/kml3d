@@ -13,17 +13,17 @@
 }
 
 \section{Objects from the Class}{
-  \code{\link{kml}} is an algorithm that builds a set of \code{\linkS4class{Clustering}}
+  \code{\link{kml3d}} is an algorithm that builds a set of \code{\linkS4class{Clustering}}
   from longitudinal data (object \code{\linkS4class{LongData}}). \code{ClusterLongData}
-  is the object containing the original longitudinal data and all the \code{Clustering} that \code{kml} finds.\cr
+  is the object containing the original longitudinal data and all the \code{Clustering} that \code{kml3d} finds.\cr
 
   When created, an \code{ClusterLongData} object simply contains initial
   data (the trajectories).
-  After the execution of \code{kml}, it contains
+  After the execution of \code{kml3d}, it contains
   the original data and a \code{\linkS4class{ListClustering}} holding
-  all the \code{\linkS4class{Clustering}} find by \code{kml}.
+  all the \code{\linkS4class{Clustering}} find by \code{kml3d}.
 
-  Please note that if \code{kml} is executed several times, every new \code{Clustering}
+  Please note that if \code{kml3d} is executed several times, every new \code{Clustering}
   are added to the original ones, no pre-existing \code{Clustering} are erased.
 }
 \section{Slots}{

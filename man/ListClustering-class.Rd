@@ -16,7 +16,7 @@
 
 \section{Objects from the Class}{
   Objects are mainly design to store the numerous \code{Clustering} found
-  by \code{\link{kml}}.
+  by \code{\link{kml3d}}.
 }
 
 \section{Slots}{
@@ -65,7 +65,7 @@
 
 \section{Construction}{
   Class \code{ListClustering} objects are mainly constructed by
-  \code{\link{kml}}.
+  \code{\link{kml3d}}.
   Neverdeless, it is also possible to construct them from
   scratch using the fonction \code{\link{listClustering}} that does
   create an empty object.

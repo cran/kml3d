@@ -5,15 +5,15 @@
 \title{~ Overview: KmL3D, K-means for joint Longitudinal data ~}
 
 \description{
-  \code{kml3d} is a new implementation of k-means for longitudinal data (or trajectories).
+  \code{KmL3D} is a new implementation of k-means for longitudinal data (or trajectories).
   Here is an overview of the package.
 }
 \details{
   \tabular{ll}{
-    Package: \tab kml3d\cr
+    Package: \tab KmL3D\cr
     Type: \tab Package\cr
-    Version: \tab 0.6\cr
-    Date: \tab 2011-11-24\cr
+    Version: \tab 0.7\cr
+    Date: \tab 2011-12-12\cr
     License: \tab GPL (>= 2)\cr
     Lazyload: \tab yes\cr
     Depends: \tab methods,graphics,rgl,misc3d\cr
@@ -24,7 +24,7 @@
 
 
 \section{Overview}{
-  To cluster data, \code{kml3d} go through three steps, each of which
+  To cluster data, \code{KmL3D} go through three steps, each of which
   is associated to some functions:
 
   \enumerate{
@@ -40,7 +40,7 @@
 
 
 \section{1. Data preparation}{
-  \code{kml} works on object of class \code{\linkS4class{ClusterLongData}}.
+  \code{KmL3D} works on object of class \code{\linkS4class{ClusterLongData}}.
   Data preparation therefore simply consists in transforming data into an object \code{ClusterLongData}.
   This can be done via function
   \code{\link[=clusterLongData]{clusterLongData}}
@@ -61,22 +61,22 @@
 
 \section{2. Building "optimal" clustering}{
   Once an object of class \code{\linkS4class{ClusterLongData}} has been created, the algorithm
-  \code{\link{kml}} can be run.
+  \code{\link{kml3d}} can be run.
 
-  Starting with a \code{ClusterLongData}, \code{kml} built several \code{\linkS4class{Clustering}}.
+  Starting with a \code{ClusterLongData}, \code{kml3d} built several \code{\linkS4class{Clustering}}.
   A object of class \code{Clustering} is a partition of trajectories
   into subgroups. It also contains some information like the
   percentage of trajectories contained in each group or some quality critetion (like the Calinski &
   Harabasz).\cr
 
-  \code{kml} is a "hill-climbing" algorithm. The specificity of this
+  \code{kml3d} is a "hill-climbing" algorithm. The specificity of this
   kind of algorithm is that it always converges towards a maximum, but
   one cannot know whether it is a local or a global maximum. It offers
   no guarantee of optimality.
 
   To maximize one's chances of getting a quality \code{Clustering},
   it is better to execute the hill climbing algorithm several times,
-  then to choose the best solution. By default, \code{kml} executes the hill climbing algorithm 20 times
+  then to choose the best solution. By default, \code{kml3d} executes the hill climbing algorithm 20 times
   and chooses the \code{Clustering} maximising the Calinski and Harabatz
   criterion.
 
@@ -84,11 +84,11 @@
   On the other hand, \emph{afterwards}, it is possible to calculate
   clues that will enable us to choose.
 
-  In the end, \code{kml} tests by default 2, 3, 4, 5 et 6 clusters, 20 times each.
+  In the end, \code{kml3d} tests by default 2, 3, 4, 5 et 6 clusters, 20 times each.
 }
 
 \section{3. Exporting results}{
-  When \code{\link{kml}} has constructed some
+  When \code{\link{kml3d}} has constructed some
   \code{Clustering}, the user can examine them one by one and choose
   to export some. This can be done via function
   \code{\link{choice}}. \code{choice} opens a graphic windows showing
@@ -149,7 +149,7 @@
 myCld <- generateArtificialLongData(c(15,15,15))
 
 ### 2. Building "optimal" clusterization (with only 3 redrawings)
-kml(myCld,nbRedrawing=3)
+kml3d(myCld,nbRedrawing=3)
 
 ### 3. Exporting results
 try(choice(myCld))

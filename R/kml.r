@@ -168,7 +168,7 @@ fastOrSlow <- function(toPlot,distName){
     return(fast)
 }
 
-.clusterLongData.kml <- function(object,nbClusters=2:6,nbRedrawing=3,toPlot="none",paramKml=parKml(),criterionNames=c("calinski","test")){
+.clusterLongData.kml3d <- function(object,nbClusters=2:6,nbRedrawing=20,toPlot="none",paramKml=parKml(),criterionNames=c("calinski","ray","davies","random")){
     nameObject<-deparse(substitute(object))
     on.exit(if(toPlot!="none"){close.screen(listScreen)}else{})
 
@@ -239,11 +239,14 @@ fastOrSlow <- function(toPlot,distName){
             }
         }
     }
+
+    ordered(object)
+    assign(nameObject,object,envir=parent.frame())
     save(list=nameObject,file=paste(nameObject,".Rdata",sep=""))
     ## La fenetre graphique est fermée grace a 'on.exit' défini en début de fonction
     return(invisible())
 }
-setMethod("kml","ClusterLongData",.clusterLongData.kml)
+setMethod("kml3d","ClusterLongData",.clusterLongData.kml3d)
 
 #            if(toPlot=="both"){
  #               screen(listScreen[2])
@@ -272,7 +275,7 @@ setMethod("kml","ClusterLongData",.clusterLongData.kml)
     detail <- c(part["nbClusters"],part["percentEachCluster"],part["criterionValues"],
                 part["algorithm"],part["convergenceTime"])
     names(detail) <-  c("nbClusters",paste("percent",LETTERS[1:part["nbClusters"]]),part["criterionNames"],
-                       "algorithmUsed","imputationMethod","startingCondition","convergenceTime")
+                       "algorithmUsed","startingCondition","imputationMethod","convergenceTime")
     write.csv2(detail,file=paste(nameObject,"-Details.csv",sep=""),row.names=TRUE)
 
     trajMean <- data.frame(calculTrajMean(object['traj'],part['clusters']))

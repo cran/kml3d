@@ -13,7 +13,7 @@
   calcul some qualities criterion.
 }
 \usage{
-calculCriterion(traj, part, imputationMethod = "LI-Bissectrice", criterionNames = c("calinski"))
+calculCriterion(traj, part, imputationMethod = "LI-Bissectrice", criterionNames = c("calinski","ray","davies","random"))
 }
 \arguments{
   \item{traj}{\code{[array]}: object containning the trajectories.}
@@ -40,15 +40,16 @@ calculCriterion(traj, part, imputationMethod = "LI-Bissectrice", criterionNames 
 %Note that if there is an empty cluster or an empty longData, most of
 %the criterions are anavailable.
 
-  Available criterions include : "Calinski & Harabatz" and "test"
-  (random value).
+  Available criterions include : "calinski","ray","davies" and "random".
 }
 
 \value{A list:
   \itemize{
     \item{calinski}{\code{[numeric]}: Calinski and Harabatz criterion
       c(k)=Trace(B)/Trace(W)*(n-k)/(k-1)}
-    \item{test}{code{[numeric]}: \code{test=rnorm()}}
+    \item{davies}{\code{[numeric]}: Davies and Bouldin criterion (lowest is the best)}
+    \item{ray}{\code{[numeric]}: Ray and Turing (lowest is the best)}
+    \item{random}{code{[numeric]}: random value \code{random=rnorm()}}
   }
 }
 

@@ -6,13 +6,13 @@
 \alias{show,ParKml-method}
 
 \title{~ Class: "ParKml" ~ }
-\description{\code{ParKml} is an object containing some parameter used by \code{\link{kml}}.}
+\description{\code{ParKml} is an object containing some parameter used by \code{\link{kml3d}}.}
 
 \section{Slots}{
   \describe{
     \item{\code{saveFreq}}{\code{[numeric]}: Long computations can take several
       days. So it is possible to save the object \code{\linkS4class{ClusterLongData}}
-      on which works \code{\link{kml}} once in a while. \code{saveFreq}
+      on which works \code{\link{kml3d}} once in a while. \code{saveFreq}
       defines the frequency of the saving
       process. The \code{ClusterLongData} is saved every \code{saveFreq}
       clustering calculations. The object is saved in the file
@@ -91,16 +91,16 @@
 ### Building data
 myCld <- gald(c(15,15,15))
 
-### Standard kml
-kml(myCld,,2,toPlot="both")
+### Standard kml3d
+kml3d(myCld,,2,toPlot="both")
 
 ### Using median instead of mean
 parWithMedian <- parKml(centerMethod=function(x){median(x,na.rm=TRUE)})
-kml(myCld,,2,toPlot="both",paramKml=parWithMedian)
+kml3d(myCld,,2,toPlot="both",paramKml=parWithMedian)
 
 ### Using distance max
 parWithMax <- parKml(distanceName="maximum")
-kml(myCld,,2,toPlot="both",paramKml=parWithMax)
+kml3d(myCld,,2,toPlot="both",paramKml=parWithMax)
 }
 
 \keyword{classes}
