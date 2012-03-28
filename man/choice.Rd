@@ -1,105 +1,113 @@
 \name{choice}
 \alias{choice}
 \alias{choice-methods}
-\alias{choice,ClusterLongData-method}
+\alias{choice,ClusterLongData3d-method}
 
 \title{ ~ Function: choice ~}
+
 \description{
-  \code{choice} lets the user choose some \code{Clustering} he wants to export.
+  \code{choice} lets the user choose some \code{Partition} he wants to export.
 }
+
 \usage{
-choice(object, typeGraph = "bmp",...)
+choice(object, typeGraph = "bmp")
 }
 
 \arguments{
-  \item{object}{\code{[ClusterLongData]}: Object containing the trajectories and all the clusterizations found by \code{\link{kml3d}},
-    from whom the user want to export some \code{\linkS4class{Clustering}}.}
+  \item{object}{\code{[ClusterLongData3d]}: Object containing the trajectories and all the \code{\linkS4class{Partition}} found by \code{kml3d}.}
 
-  \item{typeGraph}{\code{[character]} for every selected \code{clustering}, \code{choice} export some graphs. \code{typeGraph} set
-    the format that will be used. Possible formats are \code{\link{bmp}},
-    \code{\link{jpeg}}, \code{\link{png}} and \code{\link{tiff}}.}
-
-  \item{\dots}{Parameters for the function \code{\link{bmp}}, \code{\link{jpeg}}, \code{\link{png}} or \code{\link{tiff}}.}
+  \item{typeGraph}{\code{[character]} for every selected \code{Partition}, \code{choice} export some graphs. \code{typeGraph} set
+    the format that will be used. Possible formats are the ones available for \code{\link{savePlot}}.}
 }
-
 
 \details{
-  \code{choice} is a function that lets the user see the \code{\link{Clustering}} found by \code{\link{kml3d}}.
-  At first, \code{choice} opens a graphics window. On the left side are
-  qualities criterion of all the \code{Clustering} contained in \code{Object}.
-  One \code{Clustering} is 'active', it is the one marked by a black dot.
-  On the right side, the trajectories of \code{object} are drawn, according to the active \code{Clustering}.
+  \code{choice} is a function that lets the user see the \code{\linkS4class{Partition}} found by \code{\link{kml3d}}.
+  At first, \code{choice} opens a graphics window. On the left side, all
+  the \code{Partition} contain in \code{Object} are ploted by a
+  number (the number of cluster of the Partition). The level of the
+  number is proportionnal to a quality criteria (like Calinski &
+  Harabatz). One \code{Partition} is 'active', it is the one marked by a
+  black dot.\cr
 
-  From there, \code{choice} offers numerous options.
-  \itemize{
-    \item{Arrow}{Change the active \code{Clustering}.}
-    \item{Space}{Select/unselect a \code{Clustering} (the selected
-      \code{Clustering} are surrounded by a circle).}
-    \item{Return}{Export the selected \code{Clustering}, then
+  On the right side, the trajectories of Object are drawn (one graph for
+  each variable), according to the active \code{Partition}.
+
+  From there, \code{choice} offers numerous options :
+  \describe{
+    \item{Arrow}{Change the active \code{Partition}.}
+    \item{Space}{Select/unselect a \code{Partition} (the selected
+      \code{Partition} are surrounded by a circle).}
+    \item{Return}{Export all the selected \code{Partition}, then
       quit the function \code{choice}.}
-    \item{'e'}{Switch between the different display of the trajectories
-      and the criterion.}
-    \item{'d'}{Change the quality criterion.}
-    \item{'c'}{Order the \code{Clustering} according the the actual quality criterion.}
-    \item{'r'}{Change the trajectories style.}
-    \item{'t'}{Change the mean trajectories style.}
-    \item{'g/t'}{Decrease / increase the size of the mean trajectories symbols.}
-    \item{'h/y'}{Decrease / increase the number of symbol on the means trajectories.}
+    \item{'e'}{Change the display (Trajectories alone / quality
+      criterion alone / both)}
+    \item{'d'}{Change actif criterion.}
+    \item{'c'}{Sort the Partition according to the actif criterion.}
+    \item{'r'}{Change the trajectories' style.}
+    \item{'f'}{Change the means trajectories's style.}
+    \item{'g/t'}{Change the symbol size.}
+    \item{'y/h'}{Change the number of symbols.}
   }
 
-  When 'return' is pressed, the selected \code{Clustering} are
-  exported.
-  Exporting is done using a specific name that is \code{objectName-CnumberOfCluster-OrderInTheSublist}.
-  For each \code{Clustering}, four files/graphes are created:
-  \itemize{
-    \item{name-Clusters.csv}{Table with two columns. The first is the
-      identifier of each individual; the second holds the cluster's
-      affectation of the individual.}
-    \item{name-Detail.csv}{Information about the
-      clusterization (qualities criterion, the percentage of individual
-      in each cluster, detail about the algorithm used,...)}
-    \item{name-TrajMean.csv}{Coordonates of the mean trajectories of each
-      clusters.}
-    \item{name-Traj.ext}{Graph (of type 'ext') representing the
+  When 'return' is pressed, the selected \code{Partition} are
+  exported. Exporting is done in a specific named
+  \code{objectName-Cx-y} where x is the number of cluster and y is the
+  order in the sublist. Four files are created
+  :
+  \describe{
+    \item{objectName-Cx-y-Clusters.csv}{Table with two columns. The first is the
+      identifier of each trajectory (idAll); the second holds the cluster's
+      affectation of the trajectory.}
+    \item{objectName-Cx-y-Detail.csv}{Table containing information about the
+      clusteration (percentage of individual
+      in each cluster, various qualities criterion, algorithm used to
+      find the partition and convergence time.)}
+    \item{objectName-Cx-y-Traj.bmp}{Graph representing the
       trajectories. All the parameters set during the visualization (color
-      of the trajectories, symbols used, mean color, ...) are used here.}
+      of the trajectories, symbols used, mean color) are used
+      for the export. Note that the 'typeGraph' argument can be used to
+      export the graph in a format different than 'bmp'.}
+    \item{objectName-Cx-y-TrajMean.bmp}{Graph representing the
+      means trajectories of each clusterss. All the parameters set during the visualization (color
+      of the trajectories, symbols used, mean color) are used
+      for the export.}
   }
 
-  In addition, two graphs are created:
-  \itemize{
-    \item{objectName-criterionActif.ext}{Graph (of type 'ext') representing the
-      actif quality criterion.}
-    \item{objectName-criterionAll.ext}{Graph (of type 'ext') representing the
-      all the quality criterion, standardized (see \code{\link{plot,ListClustering}}).}
+  This four file are created for each selected Partition. In addition, two
+  'global' graphes are created :
+  \describe{
+    \item{objectName-criterionActif.bmp}{Graph presenting the values of
+      the criterionActifall for all the Partition.}
+    \item{objectName-criterionAll.bmp}{For each cluster's number, the
+      first Partition is considered. This graph presents on a single
+      display the values of all the criterion
+      for each first Partition. It is helpfull to compare the various qualities
+      criterion.}
   }
 }
 
-\value{No value are return; Several files and graphes are created in the
-  curent folder, see 'details'.}
+\value{For each selected \code{Partition}, four files are saved, plus two global files.}
 
 
-\references{Article "KmL: K-means for Longitudinal Data", in
-  Computational Statistics, Volume 25, Issue 2 (2010), Page 317. \cr
-  Web site: \url{http://christophe.genolini.free.fr/kml}
+
+\seealso{
+  Overview: \code{\link{kml3d-package}} \cr
+  Classes : \code{\linkS4class{ClusterLongData3d}}, \code{\linkS4class{Partition}} \cr
+  Methods : \code{\link{kml3d}}\cr
+  Plot : \code{\link[kml3d:plot]{plot(ClusterLongData)}}
 }
 
-\section{Author(s)}{
-  Christophe Genolini\cr
-  INSERM U669 / PSIGIAM: Paris Sud Innovation Group in Adolescent Mental Health\cr
-  Modal'X / Universite Paris Ouest-Nanterre- La Defense \cr\cr
-
-  Contact author : \email{genolini@u-paris10.fr}
-}
 
 \examples{
 ### Creation of articficial data
-cld1 <- gald(c(15,15,15))
+cld1 <- gald3d()
 
 ### Clusterisation
-kml3d(cld1,nbRedrawing=3)
+kml3d(cld1,nbRedrawing=3,toPlot='both')
 
-### Selection of the clusterization we want
-#     (linux does not support getGraphicsEvent...
+### Selection of the clustering we want
+#     (note that "try" is for compatibility with CRAN only,
+#     you probably can use "choice(cld1)")
 try(choice(cld1))
 }
 

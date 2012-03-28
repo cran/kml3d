@@ -1,61 +1,104 @@
 source("../R/kml.r")
+dyn.load("../src-i386/kml")
 cleanProg(.partitionInitialise,,,1) # min
 point <- matrix(c(0,0, 0,1, -1,0, 0,-1, 1,0),5,byrow=TRUE)
 points <- rbind(point,t(t(point)+c(10,0)),t(t(point)+c(5,6)))
 points <- rbind(points,t(t(points)+c(30,0)),t(t(points)+c(15,20)),t(-t(point)+c(20,10)))
 
-paInit <- partitionInitialise(2,nrow(points),as.matrix(dist(points)),method="maxDist")
+paInit <- partitionInitialise(4,nrow(points),method="randomK")
 plot(points)
-lines(points[!is.na(paInit["clusters"]),],col=2,type="p")
+lines(points[!is.na(paInit["clusters"]),],col=na.omit(paInit["clustersAsInteger"])+1,type="p",cex=1,lwd=2,pch=16)
 
-paInit <- partitionInitialise(3,nrow(points),as.matrix(dist(points)),method="maxDist")
+paInit <- partitionInitialise(4,nrow(points),method="randomAll")
 plot(points)
-lines(points[!is.na(paInit["clusters"]),],col=2,type="p")
+lines(points[!is.na(paInit["clusters"]),],col=paInit["clustersAsInteger"]+1,type="p",cex=1,lwd=2,pch=16)
 
-paInit <- partitionInitialise(4,nrow(points),as.matrix(dist(points)),method="maxDist")
+paInit <- partitionInitialise(4,nrow(points),method="maxDist",points)
 plot(points)
-lines(points[!is.na(paInit["clusters"]),],col=2,type="pg")
+lines(points[!is.na(paInit["clusters"]),],col=na.omit(paInit["clustersAsInteger"])+1,type="p",cex=1,lwd=2,pch=16)
 
-paInit <- partitionInitialise(3,nrow(points),as.matrix(dist(points)),method="randomK")
+paInit <- partitionInitialise(4,nrow(points),method="kmeans++",points)
 plot(points)
-lines(points[!is.na(paInit["clusters"]),],col=2,type="p")
+lines(points[!is.na(paInit["clusters"]),],col=na.omit(paInit["clustersAsInteger"])+1,type="p",cex=1,lwd=2,pch=16)
 
-paInit <- partitionInitialise(3,nrow(points),as.matrix(dist(points)),method="randomAll")
-plot(points,col=as.integer(paInit["clusters"]))
+paInit <- partitionInitialise(4,nrow(points),method="kmeans--",points)
+plot(points)
+lines(points[!is.na(paInit["clusters"]),],col=na.omit(paInit["clustersAsInteger"])+1,type="p",cex=1,lwd=2,pch=16)
+
+paInit <- partitionInitialise(4,nrow(points),method="kmeans+",points)
+plot(points)
+lines(points[!is.na(paInit["clusters"]),],col=na.omit(paInit["clustersAsInteger"])+1,type="p",cex=1,lwd=2,pch=16)
+
+paInit <- partitionInitialise(4,nrow(points),method="kmeans-",points)
+plot(points)
+lines(points[!is.na(paInit["clusters"]),],col=na.omit(paInit["clustersAsInteger"])+1,type="p",cex=1,lwd=2,pch=16)
+
 
 
 
 pa <- partitionInitialise(3,200,method="randomK")
-
-plot(ld3,pa)
+plot(ld4,pa)
 
 pa <- partitionInitialise(3,200,method="randomAll")
-plot(ld3,pa)
-
-pa <- partitionInitialise(3,200,method="maxDist",matDist3d(ld3["traj"]))
-plot(ld3,pa)
-
-pa <- partitionInitialise(3,30,method="randomK")
 plot(ld4,pa)
 
-pa <- partitionInitialise(3,30,method="randomAll")
+pa <- partitionInitialise(3,200,method="maxDist",ld4["traj"])
 plot(ld4,pa)
 
-pa <- partitionInitialise(3,30,method="maxDist",matDist3d(ld4["traj"]))
+pa <- partitionInitialise(3,200,method="kmeans++",ld4["traj"])
 plot(ld4,pa)
 
+pa <- partitionInitialise(3,200,method="kmeans+",ld4["traj"])
+plot(ld4,pa)
 
-cleanProg(calculTrajMean,,,2) # meanNA tapply
+pa <- partitionInitialise(3,200,method="kmeans--",ld4["traj"])
+plot(ld4,pa)
+
+pa <- partitionInitialise(3,200,method="kmeans-",ld4["traj"])
+plot(ld4,pa)
+
+pa <- partitionInitialise(3,200,method="maxDist",LD4["traj"])
+plot(LD4,pa)
+
+pa <- partitionInitialise(3,200,method="kmeans++",LD4["traj"])
+plot(LD4,pa)
+
+pa <- partitionInitialise(3,200,method="kmeans+",LD4["traj"])
+plot(LD4,pa)
+
+pa <- partitionInitialise(3,200,method="kmeans--",LD4["traj"])
+plot(LD4,pa)
+
+pa <- partitionInitialise(3,200,method="kmeans-",LD4["traj"])
+plot(LD4,pa)
+
+
+
+
+
+cleanProg(calculTrajMean,,,1) # tapply
 cent2a <- calculTrajMean(ld2["traj"],p2a['clusters'])
 cent2b <- calculTrajMean(ld2["traj"],p2b['clusters'])
 cent2c <- calculTrajMean(ld2["traj"],p2c['clusters'],medianNA)
 
-#cent3aC <- calculTrajMean(ld3["traj"],p3a['clusters'])
-#cent3bC <- calculTrajMean(ld3["traj"],p3b['clusters'])
-#cent3cC <- calculTrajMean(ld3["traj"],p3c['clusters'])
-#cent3dC <- calculTrajMean(ld3["traj"],p3d['clusters'])
-#cent3eC <- calculTrajMean(ld3["traj"],p3e['clusters'])
-#cent3fC <- calculTrajMean(ld3["traj"],p3f['clusters'])
+cent3a <- calculTrajMean(ld3["traj"],p3a['clusters'])
+cent3b <- calculTrajMean(ld3["traj"],p3b['clusters'])
+cent3c <- calculTrajMean(ld3["traj"],p3c['clusters'])
+cent3d <- calculTrajMean(ld3["traj"],p3d['clusters'])
+cent3e <- calculTrajMean(ld3["traj"],p3e['clusters'])
+cent3f <- calculTrajMean(ld3["traj"],p3f['clusters'])
+
+cleanProg(calculTrajMean,,,1) # tapply
+cent2A <- calculTrajMean(LD2["traj"],p2a['clusters'])
+cent2B <- calculTrajMean(LD2["traj"],p2b['clusters'])
+cent2C <- calculTrajMean(LD2["traj"],p2c['clusters'],medianNA)
+
+cent3A <- calculTrajMean(LD3["traj"],p3a['clusters'])
+cent3B <- calculTrajMean(LD3["traj"],p3b['clusters'])
+cent3C <- calculTrajMean(LD3["traj"],p3c['clusters'])
+cent3D <- calculTrajMean(LD3["traj"],p3d['clusters'])
+cent3E <- calculTrajMean(LD3["traj"],p3e['clusters'])
+cent3F <- calculTrajMean(LD3["traj"],p3f['clusters'])
 
 cleanProg(affectIndiv,,,1) # dist3d (dans les arguments)
 aC <- affectIndiv(ld2["traj"],cent2a)
@@ -64,17 +107,56 @@ cC <- affectIndiv(ld2["traj"],cent2c)
 
 
 cleanProg(kmlSlow)
-partInit <- partitionInitialise(3,193,method="maxDist",matDist3d(ld3["traj"]))
+partInit <- partitionInitialise(3,8,method="randomK")
 system.time(kmlSlow(ld3['traj'],partInit))
-system.time(kmlSlow(ld3['traj'],partInit,toPlot="none"))
+partInit <- partitionInitialise(6,200,method="randomK")
+system.time(kmlSlow(ld4['traj'],partInit))
+#partInit <- partitionInitialise(6,2000,method="randomK")
+#system.time(kmlSlow(ld5['traj'],partInit))
 
-kml(cld3)
-#cleanProg(kmlFast)
+partInit <- partitionInitialise(3,8,method="randomK")
+system.time(kmlSlow(LD3['traj'],partInit))
+partInit <- partitionInitialise(6,200,method="randomK")
+system.time(kmlSlow(LD4['traj'],partInit))
+#partInit <- partitionInitialise(6,2000,method="randomK")
+#system.time(kmlSlow(LD5['traj'],partInit))
+
+
+cleanProg(kmlFast)
+partInit <- partitionInitialise(3,8,method="randomK")
+system.time(kmlFast(ld3['traj'],partInit))
+
+partInit <- partitionInitialise(6,200,method="randomK")
+system.time(kmlFast(ld4['traj'],partInit))
+
+partInit <- partitionInitialise(6,2000,method="randomK")
+system.time(a <- kmlFast(ld5['traj'],partInit))
+system.time(b <- kmlSlow(ld5['traj'],partInit))
+identical(a,b)
+
+partInit <- partitionInitialise(3,8,method="randomK")
+system.time(a <- kmlFast(LD3['traj'],partInit))
+system.time(b <- kmlSlow(LD3['traj'],partInit))
+
+partInit <- partitionInitialise(6,200,method="randomK")
+system.time(kmlFast(LD4['traj'],partInit))
+#partInit <- partitionInitialise(6,2000,method="randomK")
+#system.time(kmlFast(LD5['traj'],partInit))
+
+
 cleanProg(expandStartingCond)
-expandStartingCond(startingCond="allMethods",3,"randomK")
-expandStartingCond(startingCond="allMethods",3,"maxDist")
-expandStartingCond(startingCond="randomK",3,"maxDist")
-expandStartingCond(startingCond="randomK",3,"randomK")
+expandStartingCond(startingCond="all",10,"")
+expandStartingCond(startingCond="all",10,"maxDist")
+expandStartingCond(startingCond="all",10,"kmeans-")
+expandStartingCond(startingCond="all",10,c("maxDist","kmeans-"))
+
+expandStartingCond(startingCond="nearlyAll",10,"")
+expandStartingCond(startingCond="nearlyAll",10,"maxDist")
+expandStartingCond(startingCond="nearlyAll",10,"kmeans-")
+expandStartingCond(startingCond="nearlyAll",10,c("maxDist","kmeans-"))
+
+expandStartingCond(startingCond="kmeans-",10,"")
+expandStartingCond(startingCond=c("kmeans-","randomK"),10,"randomK")
 
 cleanProg(cutScreen)
 cleanProg(fastOrSlow,,,1) #DISTANCE_METHODS

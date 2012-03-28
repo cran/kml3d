@@ -1,51 +1,35 @@
 #useDynLib(kml)
 
 export(
-       ## function
-       #"meanNA","medianNA","sdNA","varNA","rangeNA","which.minNA",
-       ## Partition
-       "partition","ordered",
-       ## ParLongData
-       "parLongData","parTraj","parMean",
-       ## parWindows
-       "parWindows","windowsCut",
-       ## LongData
-       "as.longData",#"as.longData.data.frame","as.longData.array",
-       "scale",
-       "gald","generateArtificialLongData",
-       ## LongDataPlot
-       "plot","calculTrajMean",#"resizePartition","calculTrajMeanPoint","legendCol","varNumAndName","adjustGraph3d
-       "saveTrianglesAsASY","makeLatexFile",
-       ## Distance
-       "dist3d","matDist3d",
-       ## Clustering
-       "calculCriterion","clustering",
+       ## Distance3d
+       "dist3d",#"matDist3d",
+
+       ## ClusterLongData3d
+       "cld3d","gald3d","generateArtificialLongData3d",
+
+       ## kml3d
+       "parKml3d","calculTrajMean3d","affectIndiv3d",
+       #"kml3dSlow","kml3dFast","fastOrSlow3d",
+       "kml3d","choice"
+       #alculCriterion","clustering",
+
        ## ListClustering
-       "listClustering","regroup","ordered","plot",
-       ## ClusterLongData
-       "plot","cld","as.cld",
+#       "listClustering","regroup","ordered","plot",
+ #      "calculTrajMean",#"resizePartition","calculTrajMeanPoint","legendCol","varNumAndName","adjustGraph3d
+
+  #     "plot","cld","as.cld","getCluster",
        ## parKml
-       "parKml",
+   #    "parKml",
        ## Kml
-       "affectIndiv"
+    #   "affectIndiv"
        )
 
 exportMethods(
-              "longData","imputation","restaureRealData","expandParLongData","plot3d","plot3dPdf",
-              "clusterLongData","as.clusterLongData","plot3d","partitionInitialise","kml3d",
-              "exportClustering","choice"
+              "clusterLongData3d","plot","plot3d","plot3dPdf"
               )
 
 exportClasses(
-              "Partition",
-              "ParLongData",
-              "ParWindows",
-              "ParKml",
-#              "ParChoice",
-              "LongData",
-              "Clustering",
-              "ListClustering",
-              "ClusterLongData"
+              "ClusterLongData3d"
               )
 
-import(methods,graphics,rgl,misc3d)
+import(methods,graphics,rgl,misc3d,longitudinalData,kml)
