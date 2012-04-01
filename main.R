@@ -1,0 +1,11 @@
+library(kml)
+
+setwd("C:/Users/GENOLLINI/Documents/cgenolini/packages/kml3d/tests")
+source("testFunction.R")
+source("testDistance3d.r")
+source("fromLongitudinalData.r")
+source("testClusterLongData3d.R")
+#source("testParKml.r")
+#source("testParChoice.R")
+source("testKml3d.r")
+source("../R/clean.r")

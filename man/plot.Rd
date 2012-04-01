@@ -1,103 +1,129 @@
-\name{plot,ClusterLongData}
-\Rdversion{1.1}
+\name{plot,ClusterLongData3d}
 \alias{plot}
-\alias{plot,ClusterLongData}
-\alias{plot,ClusterLongData-method}
-\alias{plot,ClusterLongData,missing-method}
-\alias{plot,ClusterLongData,ANY-method}
+\alias{plot,ClusterLongData3d}
+\alias{plot,ClusterLongData3d,method}
+\alias{plot,ClusterLongData3d,missing-method}
+\alias{plot,ClusterLongData3d,numeric-method}
 
-\title{ ~ function: plot for ClusterLongData ~ }
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{ ~ Function: plot for ClusterLongData3d ~ }
 \description{
-  \code{plot} the a \code{\linkS4class{ClusterLongData}} object.
+  \code{plot} the trajectories of an object
+  \code{\linkS4class{ClusterLongData3d}} relativly to a
+  \code{\linkS4class{Partition}}. One graphe for each variable is displayed.
 }
-
 \usage{
-\S4method{plot}{ClusterLongData,ANY}(x,y,paramTraj=parTraj(),paramMean=parMean(),paramWindows=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100)
-}
+\S4method{plot}{ClusterLongData3d,numeric}(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100)
 
+%,toPlot=c("both"),criterion=x["criterionActif"],nbCriterion=100,standardized = FALSE)
+}
+%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{\code{[ClusterLongData]}: Object containing the trajectories
-    to plot according to a \code{\linkS4class{Partition}} define by \code{y}.}
-  \item{y}{\code{[numeric]}: Define \code{Partition} P that will be use to plot
-    the object. \code{P} is a \code{Partition} hold in the field \code{c2},
-    \code{c3}, ... \code{c26}. If \code{y=c(a,b)}, then \code{P} is
-    the \code{Partition} number \code{b} with \code{a} clusters. If \code{y=a},
-    then \code{P} is the partition number \code{1} with \code{a}
-    clusters. If \code{y} is missing, \code{P} is the \code{Partition} with the best
-    criterion.}
-  \item{paramTraj}{\code{[parLongData]}: Set the graphical parameters
-    used to plot the trajectories of the \code{LongData}. See \code{\linkS4class{ParLongData}}
-    for details.}
-  \item{paramMean}{\code{[parLongData]}: Set the graphical parameters
-    used to plot the mean trajectories of each clusters \code{LongData}
-    (only when \code{y} is non missing). See \code{\linkS4class{ParLongData}}
-    for details.}
-  \item{paramWindows}{\code{[ParWindows]}: Set the graphical display of
+  \item{x}{\code{[ClusterLongData3d]}: Object containing the joint-trajectories to plot.}
+
+  \item{y}{\code{[numeric]} or \code{[vector2(numeric)]}: Give the \code{Partition}
+    to represent. If \code{y} is missing, the \code{Partition} with
+    the highest quality criterion (the actif one) is selected. If \code{y} is a number,
+    the first \code{Partition} of the sublist \code{c-y} is
+    selected. If \code{y} is a couple of numeric, the \code{y[2]}th
+    \code{Partition} of the sublist \code{c-y[1]} is selected.}
+  
+  \item{parTraj}{\code{[ParLongData]}: Specification of the plotting
+    parameters of the individual trajectories. Fields that can be changes are
+    'type','col','pch','xlab' and 'ylab'. In addition to the standard
+    possible values, the option \code{col="clusters"} can be use to color the individual
+    trajectories according to their clusters (exemple:
+    \code{parTraj=parTRAJ(type="o",col="clusters")}). See
+    \code{\linkS4class{ParLongData}} for details.}
+  
+  \item{parMean}{\code{[ParLongData]}: Specification of the plotting
+    parameters of the mean trajectories (only when y is non missing). Fields that can be changes are
+    'type','col','pch','pchPeriod' and 'cex'. See
+    \code{\linkS4class{ParLongData}} for details.}
+  
+  \item{parWin}{\code{[parWindin]}: Set the graphical display of
     the windows. See \code{\linkS4class{ParWindows}} for details.}
+  
   \item{nbSample}{\code{[numeric]}: Graphical display of huge sample can
-    be time consumming. This parameters fixe the maximum numbre of
+    be time consumming. This parameters fixe the maximum number of
     trajectories (randomly chosen) that will be drawn.}
-  \item{toPlot}{\code{[character]}: define the graph to plot. If "traj",
-    then the trajectories are plot (like with function
-    \code{\link{plot,LongData}}).
-    If "criterion", then the criterion are plot (like with function
-    \code{\link{plot,ListClustering}}). If "both", then that graphic
-    windows is split in two and both graphs are displayed. If "none",
-    there is no graphical display.}
-  \item{nbCriterion}{[numeric]: set the maximum number of criterion to
-    display for a specific clusters number.}
+  
+  \item{toPlot}{\code{[character]}: either 'traj' for plotting
+    trajectories alone, 'criterion' for plotting criterion alone,
+    'both' for plotting both or 'none' for not display anything.}
+  
+  \item{nbCriterion}{\code{[numeric]}: if a single criterion is given to
+    \code{criterion} (and thus is displayed for 'all' the
+    \code{Partition}), this slot alows to fix a limit on the number of
+    points that will be display.}
 }
 
 \details{
-  \code{plot} each variable of a \code{\linkS4class{ClusterLongData}}
-  according to the \code{Partition} define by \code{y}.
+  \code{plot} the trajectories of an object \code{\linkS4class{ClusterLongData3d}} relativly
+  to the 'best' \code{\linkS4class{Partition}}, or to the
+  \code{Partition} define by \code{y}.
+  
+  Graphical option concerning the individual trajectory (col, type, pch
+  and xlab) can be change using \code{parTraj}.
+  Graphical option concerning the cluster mean trajectory (col, type, pch,
+  pchPeriod and cex) can be change using \code{parMean}. For more
+  detail on  \code{parTraj} and  \code{parMean}, see object of
+  class \code{\linkS4class{ParLongData}}.
 }
 
-\seealso{\code{\linkS4class{ClusterLongData}}}
 
 
-\references{Article "KmL: K-means for Longitudinal Data", in
-  Computational Statistics, Volume 25, Issue 2 (2010), Page 317. \cr
-  Web site: \url{http://christophe.genolini.free.fr/kml}
+
+
+
+\seealso{
+  Overview: \code{\link{kml3d-package}} \cr
+  Classes : \code{\linkS4class{ClusterLongData3d}} \cr
+  Plot : \code{\link[longitudinalData:plot]{plot(longitudinalData)}}, \code{\link{plotCriterion}}
 }
-
-\section{Author(s)}{
-  Christophe Genolini\cr
-  INSERM U669 / PSIGIAM: Paris Sud Innovation Group in Adolescent Mental Health\cr
-  Modal'X / Universite Paris Ouest-Nanterre- La Defense \cr\cr
-
-  Contact author : \email{genolini@u-paris10.fr}
-}
-
-\examples{
+  
+  \examples{
 ##################
-### Real example on array
+### Construction of the data
 
-time=c(1,2,3,4,8,12,16,20)
-id3=1:12000
-f <- function(id,t)((id-1)\%\%3-1) * t
-g <- function(id,t)(id\%\%2+1)*t
-ld3 <- as.longData(array(cbind(outer(id3,time,f),outer(id3,time,g))+rnorm(12000*8*2,0,3),dim=c(12000,8,2)))
-par(ask=TRUE)
+myCld <- gald3d()
+part <- partition(rep(1:3,each=50))
 
-### Basic plot
-plot(ld3)
+### Basic plotting
+plot(myCld)
+plot(myCld,part)
 
-### Change the windows orientation
-plot(ld3,paramWindows=windowsCut(c(2,1)))
 
-### Change some parameters
-plot(ld3,paramTraj=parTraj(col="red"))
+##################
+### Changing graphical parameters 'par'
 
-### Plot only 1000 trajectories
-plot(ld3,nbSample=1000)
+### No letters on the mean trajectories
+plot(myCld,part,parMean=parMEAN(type="l"))
 
-### Plot all the trajectories
-plot(ld3,nbSample=Inf)
-par(ask=FALSE)
+### Only one letter on the mean trajectories
+plot(myCld,part,parMean=parMEAN(pchPeriod=Inf))
+
+### Color individual according to its clusters (col="clusters")
+plot(myCld,part,parTraj=parTRAJ(col="clusters"))
+
+### Mean without individual
+plot(myCld,part,parTraj=parTRAJ(type="n"))
+
+
+### No mean trajectories (type="n")
+### Color individual according to its clusters (col="clusters")
+plot(myCld,part,parTraj=parTRAJ(col="clusters"),parMean=parMEAN(type="n"))
+
+### Only few trajectories
+plot(myCld,part,nbSample=10,parTraj=parTRAJ(col='clusters'),parMean=parMEAN(type="n"))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{package}
-\keyword{ts}
-\keyword{aplot}
+
+\keyword{dplot}    % Computations Related to Plotting
+\keyword{iplot}    % Interacting with Plots
+\keyword{chron}    % Dates and Times
+\keyword{spatial}  % Spatial Statistics ['spatial' package]
+\keyword{classif}  % Classification	['class' package]
+\keyword{cluster}  % Clustering
+\keyword{ts}       % Time Series
+
+

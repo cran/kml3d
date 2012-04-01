@@ -1,21 +1,21 @@
 \name{plot3dPdf}
 \Rdversion{1.1}
 \alias{plot3dPdf}
-\alias{plot3dPdf,ClusterLongData-method}
-\alias{plot3dPdf,ClusterLongData,missing-method}
-\alias{plot3dPdf,ClusterLongData,numeric-method}
+\alias{plot3dPdf,ClusterLongData3d-method}
+\alias{plot3dPdf,ClusterLongData3d,missing-method}
+\alias{plot3dPdf,ClusterLongData3d,numeric-method}
 
 \title{
-  ~ Function: plot3dPdf for LongData ~
+  ~ Function: plot3dPdf for ClusterLongData3d ~
 }
 \description{
-  Given a \code{\linkS4class{ClusterLongData}} and a \code{\linkS4class{Partition}}, this
+  Given a \code{\linkS4class{ClusterLongData3d}} and a \code{\linkS4class{Partition}}, this
   function create Triangle objects representing the 3D plot of two
   variables of the main trajectories.
 }
 \usage{
-\S4method{plot3dPdf}{ClusterLongData,missing}(x,y,varY=1,varZ=2)
-\S4method{plot3dPdf}{ClusterLongData,numeric}(x,y,varY=1,varZ=2)
+\S4method{plot3dPdf}{ClusterLongData3d,missing}(x,y,varY=1,varZ=2)
+\S4method{plot3dPdf}{ClusterLongData3d,numeric}(x,y,varY=1,varZ=2)
 }
 
 \arguments{
@@ -74,26 +74,26 @@
 }
 
 
-\examples{
-  ### Generating the data
-  myCld <- gald(c(5,5,5))
-  kml3d(myCld,3:4,1)
+%\examples{
+  % ### Generating the data
+  % myCld <- gald(c(5,5,5))
+  % kml(myCld,3:4,1)
 
-  ### Creation of the scene
-  scene <- plot3dPdf(myCld)
-  drawScene.rgl(scene)
+  % ### Creation of the scene
+  % scene <- plot3dPdf(myCld)
+  % drawScene.rgl(scene)
 
-  ### Export in '.azy' file
-  saveTrianglesAsASY(scene)
+  % ### Export in '.azy' file
+  % saveTrianglesAsASY(scene)
 
-  ### Creation of a '.prc' file
-  # Open a console window, then run
-  # asy -inlineimage -tex pdflatex scene.azy
+  % ### Creation of a '.prc' file
+  % # Open a console window, then run
+  % # asy -inlineimage -tex pdflatex scene.azy
 
-  ### Creation of the LaTeX main document
-  makeLatexFile()
+  % ### Creation of the LaTeX main document
+  % makeLatexFile()
 
-  ### Creation of the '.pdf'
-  # Open a console window, then run
-  # pdfLatex main.tex
-}
+  % ### Creation of the '.pdf'
+  % # Open a console window, then run
+  % # pdfLatex main.tex
+%}
