@@ -1,28 +1,3 @@
-fonctions à faire en C :
- - matDist3d
- - distance
- - kmlFast
- - fuzzy kml
-
- + plot de listClustering : quand il n'y a aucun critère, il faut tracer un graphe vide.
-
-
-Examples a faire :
- - calculCreterion
-
-
-Modifier les valeurs par défaut :
- - kml: toPlot="criterion"
- - plot3d: parTraj(type="n")
 
 Création d'une fontion de suppression des manquantes "at start"
 Et réciproquement ! (données du GRIP)
-
-Demande de Jean-Daniel Zucker :
- - Il faudrait pouvoir changer la couleur
- - Il veut aussi pouvoir exclure certaine partition d'un cld
- - calcul automatique des variations au lieu des trajectoires.
-
-Au lieu de calculer un indice (genre Calinski) sur les données, on
-peut le calculer sur les différences entre les données successives.
-Ainsi, on gomme l'auto-corrélation.

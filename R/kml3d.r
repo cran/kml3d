@@ -6,7 +6,7 @@ cat("\n####################################################################
 
 parKml3d <- function (saveFreq = 100, maxIt = 200, imputationMethod = "copyMean",
     distanceName = "euclidean3d", power = 2, distance = function() {
-    }, centerMethod = meanNA, startingCond = "nearlyAll", nbCriterion = 100)
+    }, centerMethod = meanNA, startingCond = "nearlyAll", nbCriterion = 100,scale=TRUE)
 {
     if (distanceName == "euclidean3d") {
         distance <- function(x,y){dist(rbind(c(x),c(y)),method='euclidean')}
@@ -14,7 +14,7 @@ parKml3d <- function (saveFreq = 100, maxIt = 200, imputationMethod = "copyMean"
     new("ParKml", saveFreq = saveFreq, maxIt = maxIt, imputationMethod = imputationMethod,
         distanceName = distanceName, power = power, distance = distance,
         centerMethod = centerMethod, startingCond = startingCond,
-        nbCriterion = nbCriterion)
+        nbCriterion = nbCriterion, scale=scale)
 }
 
 
@@ -65,13 +65,13 @@ kml3dSlow <- function(traj,clusterAffectation,toPlot="traj",parAlgo=parKml3d()){
 
     exClusterAffectation <- partition()
     if(toPlot%in%c("traj","both")){
-        plot(longDat3dTraj,partition(clusterAffectation))
+        plotTraj(longDat3dTraj,partition(clusterAffectation))
     }else{}
     for(iterations in 1:parAlgo['maxIt']){
         clustersCenter <- calculTrajMean3d(traj=traj,clust=clusterAffectation,centerMethod=kmlCenterMethod)
         clusterAffectation <- affectIndiv3d(traj=traj,clustersCenter=clustersCenter,distance=kmlDistance)
         if(toPlot%in%c("traj","both")){
-            plot(longDat3dTraj,partition(clusterAffectation))
+            plotTraj(longDat3dTraj,partition(clusterAffectation))
         }else{}
         if(identical(clusterAffectation,exClusterAffectation)){
             clusterAffectation <- partition(clusterAffectation,longDat3dTraj,
@@ -112,6 +112,9 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     }else{}
 
     nameObject<-deparse(substitute(object))
+
+    if(parAlgo["scale"]){scale(object)}else{}
+print(nameObject)
     on.exit(if(toPlot!="none"){close.screen(listScreen)}else{})
 
     nbIdFewNA <- object["nbIdFewNA"]
@@ -182,6 +185,8 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     }
 
     cat("\n")
+    print(nameObject)
+    cat("\n")
     if(saveCld<Inf){save(list=nameObject,file=paste(nameObject,".Rdata",sep=""))}else{}
     ## La fenetre graphique est fermée grace a 'on.exit' défini en début de fonction
     ordered(object)
@@ -193,10 +198,10 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
             plotCriterion(as(object,"ListPartition"),nbCriterion=parAlgo['nbCriterion'])
         }else{}
     }
+    if(parAlgo["scale"]){restoreRealData(object)}else{}
     assign(nameObject,object,envir=parent.frame())
     return(invisible())
 }
-
 
 .exportPartition3d <- function(object,nbClusters,rank,nameObject,typeGraph="bmp",parTraj=parTRAJ(),parMean=parMEAN()){
     #                           parWin=windowsCut(1)){
@@ -220,7 +225,7 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     write.csv2(trajMean,file=paste(nameObject,"-TrajMean.csv",sep=""),row.names=TRUE)
 
     eval(parse(text=paste(typeGraph,"(filename='",nameObject,"-Traj.",typeGraph,"')",sep="")))
-      plot(as(object,"LongData3d"),part,parTraj=parTraj,parMean=parMean)
+      plotTraj(as(object,"LongData3d"),part,parTraj=parTraj,parMean=parMean)
     dev.off()
     #lty=lty,lty.mean=lty.mean,pch=pch,pch.mean=pch.mean,pch.time=pch.time,
     #xlab=xlab,ylab=ylab,ylim=ylim,cex.mean=cex.mean,legends=legends,sizeMin=sizeMin,...)

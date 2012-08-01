@@ -4,6 +4,7 @@
 \alias{plot,ClusterLongData3d,method}
 \alias{plot,ClusterLongData3d,missing-method}
 \alias{plot,ClusterLongData3d,numeric-method}
+\alias{plot,ClusterLongData3d,Partition-method}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ ~ Function: plot for ClusterLongData3d ~ }
@@ -13,7 +14,7 @@
   \code{\linkS4class{Partition}}. One graphe for each variable is displayed.
 }
 \usage{
-\S4method{plot}{ClusterLongData3d,numeric}(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100)
+\S4method{plot}{ClusterLongData3d,numeric}(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100,...)
 
 %,toPlot=c("both"),criterion=x["criterionActif"],nbCriterion=100,standardized = FALSE)
 }
@@ -27,7 +28,7 @@
     the first \code{Partition} of the sublist \code{c-y} is
     selected. If \code{y} is a couple of numeric, the \code{y[2]}th
     \code{Partition} of the sublist \code{c-y[1]} is selected.}
-  
+
   \item{parTraj}{\code{[ParLongData]}: Specification of the plotting
     parameters of the individual trajectories. Fields that can be changes are
     'type','col','pch','xlab' and 'ylab'. In addition to the standard
@@ -35,34 +36,36 @@
     trajectories according to their clusters (exemple:
     \code{parTraj=parTRAJ(type="o",col="clusters")}). See
     \code{\linkS4class{ParLongData}} for details.}
-  
+
   \item{parMean}{\code{[ParLongData]}: Specification of the plotting
     parameters of the mean trajectories (only when y is non missing). Fields that can be changes are
     'type','col','pch','pchPeriod' and 'cex'. See
     \code{\linkS4class{ParLongData}} for details.}
-  
+
   \item{parWin}{\code{[parWindin]}: Set the graphical display of
     the windows. See \code{\linkS4class{ParWindows}} for details.}
-  
+
   \item{nbSample}{\code{[numeric]}: Graphical display of huge sample can
     be time consumming. This parameters fixe the maximum number of
     trajectories (randomly chosen) that will be drawn.}
-  
+
   \item{toPlot}{\code{[character]}: either 'traj' for plotting
     trajectories alone, 'criterion' for plotting criterion alone,
     'both' for plotting both or 'none' for not display anything.}
-  
+
   \item{nbCriterion}{\code{[numeric]}: if a single criterion is given to
     \code{criterion} (and thus is displayed for 'all' the
     \code{Partition}), this slot alows to fix a limit on the number of
     points that will be display.}
+
+  \item{...}{Arguments to be passed to methods, such as graphical parameters.}
 }
 
 \details{
   \code{plot} the trajectories of an object \code{\linkS4class{ClusterLongData3d}} relativly
   to the 'best' \code{\linkS4class{Partition}}, or to the
   \code{Partition} define by \code{y}.
-  
+
   Graphical option concerning the individual trajectory (col, type, pch
   and xlab) can be change using \code{parTraj}.
   Graphical option concerning the cluster mean trajectory (col, type, pch,
@@ -79,9 +82,9 @@
 \seealso{
   Overview: \code{\link{kml3d-package}} \cr
   Classes : \code{\linkS4class{ClusterLongData3d}} \cr
-  Plot : \code{\link[longitudinalData:plot]{plot(longitudinalData)}}, \code{\link{plotCriterion}}
+  Plot : \code{\link{plotTraj}}, \code{\link{plotCriterion}}
 }
-  
+
   \examples{
 ##################
 ### Construction of the data

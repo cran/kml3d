@@ -73,11 +73,11 @@ part <- affectIndiv3d(traj,center)
 
 #################
 ### K-means simulation (4 steps)
-plot(longData3d(traj),partition(part))
+plot(clusterLongData3d(traj),partition(part))
 for (i in 1:4){
     center <- calculTrajMean3d(traj,part)
     part <- affectIndiv3d(traj,center)
-    plot(longData3d(traj),partition(part))
+    plot(clusterLongData3d(traj),partition(part))
 }
 
 
@@ -102,7 +102,7 @@ traj <- gald3d()["traj"]
 
 ### A partition
 part <- floor(runif(150,1,5))
-plot(longData3d(traj),partition(part))
+plot(clusterLongData3d(traj),partition(part))
 
 ### Clusters center
 (center <- calculTrajMean3d(traj,part))
@@ -110,11 +110,11 @@ plot(longData3d(traj),partition(part))
 
 #################
 ### K-means simulation (4 steps)
-plot(longData3d(traj),partition(part))
+plot(clusterLongData3d(traj),partition(part))
 for (i in 1:4){
     part <- affectIndiv3d(traj,center)
     center <- calculTrajMean3d(traj,part)
-    plot(longData3d(traj),partition(part))
+    plot(clusterLongData3d(traj),partition(part))
 }
 
 
@@ -240,13 +240,13 @@ plot3d(ex1,part1,parTraj=parTRAJ(type="l"))
 
 ex2 <- generateArtificialLongData3d(
   nbEachClusters=c(5,10,20,40),
-  functionClusters=list(
+  meanTrajectories=list(
      function(t)c(t,t^3/100),
      function(t)c(0,t),
      function(t)c(t,t),
      function(t)c(0,t^3/100)
   ),
-  functionNoise = function(t){c(rnorm(1,0,1),rnorm(1,0,1))}
+  residualVariation = function(t){c(rnorm(1,0,1),rnorm(1,0,1))}
 )
 part2 <- partition(rep(1:4,time=c(5,10,20,40)))
 plot3d(ex2,part2)
@@ -268,16 +268,18 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 ### 1. Data Preparation
-myCld <- generateArtificialLongData3d(c(15,15,15))
+data(pregnandiol)
+names(pregnandiol)
+cld3dPregTemp <- cld3d(pregnandiol,timeInData=list(preg=1:30*2+1,temp=1:30*2))
 
-### 2. Building "optimal" clusterization (with only 3 redrawings)
-kml3d(myCld,nbRedrawing=3)
+### 2. Building "optimal" clusteration (with only 3 redrawings)
+kml3d(cld3dPregTemp,nbRedrawing=3,toPlot="both")
 
 ### 3. Exporting results
-try(choice(myCld))
+try(choice(cld3dPregTemp))
 
 ### 4. Visualizing in 3D
-plot3d(myCld)
+plot3d(cld3dPregTemp,4,parTraj=parTRAJ(type="n"))
 
 
 
@@ -344,6 +346,7 @@ flush(stderr()); flush(stdout())
 ### Aliases: plot plot,ClusterLongData3d plot,ClusterLongData3d,method
 ###   plot,ClusterLongData3d,missing-method
 ###   plot,ClusterLongData3d,numeric-method
+###   plot,ClusterLongData3d,Partition-method
 ### Keywords: dplot iplot chron spatial classif cluster ts
 
 ### ** Examples
@@ -395,6 +398,7 @@ flush(stderr()); flush(stdout())
 ### Aliases: plot3d plot3d,ClusterLongData3d-method
 ###   plot3d,ClusterLongData3d,missing-method
 ###   plot3d,ClusterLongData3d,numeric-method
+###   plot3d,ClusterLongData3d,Partition-method
 ### Keywords: package ts aplot
 
 ### ** Examples
@@ -419,6 +423,44 @@ plot3d(myCld,part)
 ### plot3d, variable 1 and 3
 plot3d(myCld,part,varZ=3)
 plot3d(myCld,parTraj=parTRAJ(col="red"))
+
+
+
+cleanEx()
+nameEx("plot3dPdf")
+### * plot3dPdf
+
+flush(stderr()); flush(stdout())
+
+### Name: plot3dPdf
+### Title: ~ Function: plot3dPdf for ClusterLongData3d ~
+### Aliases: plot3dPdf plot3dPdf,ClusterLongData3d-method
+###   plot3dPdf,ClusterLongData3d,missing-method
+###   plot3dPdf,ClusterLongData3d,numeric-method
+
+### ** Examples
+
+  ### Generating the data
+  myCld3d <- gald3d(c(5,5,5))
+  kml3d(myCld3d,3:4,1)
+
+  ### Creation of the scene
+  scene <- plot3dPdf(myCld3d)
+  drawScene.rgl(scene)
+
+  ### Export in '.azy' file
+  saveTrianglesAsASY(scene)
+
+  ### Creation of a '.prc' file
+  # Open a console window, then run
+  # asy -inlineimage -tex pdflatex scene.azy
+
+  ### Creation of the LaTeX main document
+  makeLatexFile()
+
+  ### Creation of the '.pdf'
+  # Open a console window, then run
+  # pdfLatex main.tex
 
 
 
