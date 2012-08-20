@@ -10,7 +10,7 @@
 \usage{
 parKml3d(saveFreq = 100, maxIt = 200, imputationMethod = "copyMean",
     distanceName = "euclidean3d", power = 2, distance = function() {
-    }, centerMethod = meanNA, startingCond = "nearlyAll", nbCriterion =100)
+    }, centerMethod = meanNA, startingCond = "nearlyAll", nbCriterion =100,scale=TRUE)
 }
 \arguments{
   \item{saveFreq}{\code{[numeric]}: Long computations can take several
@@ -63,6 +63,15 @@ parKml3d(saveFreq = 100, maxIt = 200, imputationMethod = "copyMean",
     quality criterion that are display on the graph (since displaying
     a high criterion number an slow down the overall process, the
     default value is 100).
+  }
+
+  \item{scale}{\code{[logical]}: if TRUE, then the data will be
+    automaticaly scaled (using the function \code{\link{scale}} with
+    default values) before the execution of k-means on joint
+    trajectories. Then the data
+    will be restore (using the function \code{\link{restoreRealData}})
+    just before the end of the function \code{\link[kml3d]{kml3d}}. This option
+    has no effect on \code{\link{kml}}.
   }
 }
 

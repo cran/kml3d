@@ -12,11 +12,11 @@
   \tabular{ll}{
     Package: \tab kml3d\cr
     Type: \tab Package\cr
-    Version: \tab 2.0\cr
-    Date: \tab 2012-04-01\cr
+    Version: \tab 2.1\cr
+    Date: \tab 2012-08-01\cr
     License: \tab GPL (>= 2)\cr
     Lazyload: \tab yes\cr
-    Depends: \tab methods,graphics,rgl,misc3d,longitudinalData, kml\cr
+    Depends: \tab methods,graphics,rgl,misc3d,longitudinalData(>=2.1),kml(>=2.1)\cr
     URL:\tab http://www.r-project.org\cr
     URL:\tab http://christophe.genolini.free.fr/kml\cr
   }
@@ -127,16 +127,18 @@
 
 \examples{
 ### 1. Data Preparation
-myCld <- generateArtificialLongData3d(c(15,15,15))
+data(pregnandiol)
+names(pregnandiol)
+cld3dPregTemp <- cld3d(pregnandiol,timeInData=list(preg=1:30*2+1,temp=1:30*2))
 
-### 2. Building "optimal" clusterization (with only 3 redrawings)
-kml3d(myCld,nbRedrawing=3)
+### 2. Building "optimal" clusteration (with only 3 redrawings)
+kml3d(cld3dPregTemp,nbRedrawing=3,toPlot="both")
 
 ### 3. Exporting results
-try(choice(myCld))
+try(choice(cld3dPregTemp))
 
 ### 4. Visualizing in 3D
-plot3d(myCld)
+plot3d(cld3dPregTemp,4,parTraj=parTRAJ(type="n"))
 }
 
 \keyword{package}  % Package Summaries

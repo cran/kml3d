@@ -4,6 +4,7 @@
 \alias{plot3d,ClusterLongData3d-method}
 \alias{plot3d,ClusterLongData3d,missing-method}
 \alias{plot3d,ClusterLongData3d,numeric-method}
+\alias{plot3d,ClusterLongData3d,Partition-method}
 
 \title{ ~ Function: plot3d for ClusterLongData3d ~ }
 \description{
@@ -12,8 +13,8 @@
 }
 
 \usage{
-\S4method{plot3d}{ClusterLongData3d,missing}(x,y,varY=1,varZ=2,parTraj=parTRAJ(type="n"),parMean=parMEAN(),nbSample=200)
-\S4method{plot3d}{ClusterLongData3d,numeric}(x,y,varY=1,varZ=2,parTraj=parTRAJ(type="n"),parMean=parMEAN(),nbSample=200)
+\S4method{plot3d}{ClusterLongData3d,missing}(x,y,varY=1,varZ=2,parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...)
+\S4method{plot3d}{ClusterLongData3d,numeric}(x,y,varY=1,varZ=2,parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...)
 }
 
 \arguments{
@@ -40,6 +41,7 @@
   \item{nbSample}{\code{[numeric]}: Graphical display of huge sample can
     be time consumming. This parameters fixe the maximum numbre of
     trajectories (randomly chosen) that will be drawn.}
+  \item{...}{Arguments to be passed to methods, such as graphical parameters.}
 }
 
 \details{

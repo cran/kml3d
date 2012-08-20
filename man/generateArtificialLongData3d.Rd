@@ -12,15 +12,15 @@
 }
 \usage{
 gald3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
-    functionClusters=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
-    constantPersonal=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
-    functionNoise=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
+    meanTrajectories=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
+    personalVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
+    residualVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
     decimal=2,percentOfMissing=0)
 
 generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
-    functionClusters=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
-    constantPersonal=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
-    functionNoise=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
+    meanTrajectories=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
+    personalVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
+    residualVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
     decimal=2,percentOfMissing=0)
 }
 
@@ -31,17 +31,17 @@ generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
 
   \item{time}{\code{[vector(numeric)]}: time at which measures are made.}
   \item{varNames}{\code{[vector(character)]}: names of the variables.}
-  \item{functionClusters}{\code{[list(function)]}: lists the functions
+  \item{meanTrajectories}{\code{[list(function)]}: lists the functions
     that define the average trajectories of each cluster.
     Each functions shall return a vector containing one value for each variable of \code{varNames}.}
 
-  \item{constantPersonal}{\code{[function]} or \code{[list(function)]}: lists the functions
+  \item{personalVariation}{\code{[function]} or \code{[list(function)]}: lists the functions
     defining the personnal variation between an individual and the mean
     trajectories of its cluster. Note that these function should be
     constant function (the personal variation can not evolve with time). If
     a single function is given, it is duplicated for all groups (see detail).}
 
-  \item{functionNoise}{\code{[function]} or
+  \item{residualVariation}{\code{[function]} or
     \code{[list(function)]}: lists the functions
     generating the noise of each trajectory within its own cluster.
     Each functions shall return a vector containing one value for each variable of \code{varNames}.
@@ -59,10 +59,10 @@ generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
   function that contruct a set of artificial joint longitudinal data.
   Each individual is considered as belonging to a group. This group
   follows a theoretical trajectory, function of time.
-  These functions (one per group) are given via the argument \code{functionClusters}.
+  These functions (one per group) are given via the argument \code{meanTrajectories}.
 
   Within a group, the individual undergoes individal
-  variations. Individual variations are given via the argument \code{functionNoise}.
+  variations. Individual variations are given via the argument \code{residualVariation}.
 
   The number of individuals in each group is given by \code{nbEachClusters}.
 
@@ -108,13 +108,13 @@ plot3d(ex1,part1,parTraj=parTRAJ(type="l"))
 
 ex2 <- generateArtificialLongData3d(
   nbEachClusters=c(5,10,20,40),
-  functionClusters=list(
+  meanTrajectories=list(
      function(t)c(t,t^3/100),
      function(t)c(0,t),
      function(t)c(t,t),
      function(t)c(0,t^3/100)
   ),
-  functionNoise = function(t){c(rnorm(1,0,1),rnorm(1,0,1))}
+  residualVariation = function(t){c(rnorm(1,0,1),rnorm(1,0,1))}
 )
 part2 <- partition(rep(1:4,time=c(5,10,20,40)))
 plot3d(ex2,part2)

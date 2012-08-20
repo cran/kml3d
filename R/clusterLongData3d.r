@@ -1,4 +1,4 @@
-### clusterization est une partition associé a une longData, ou une clusterizLongData.
+## clusterization est une partition associé a une longData, ou une clusterizLongData.
 ### cet objet ne devrait pouvoir exister que dans un cld
 
 
@@ -90,7 +90,7 @@ setMethod("clusterLongData3d",signature=c("missing","missing","missing","missing
 }
 
 
-setMethod("clusterLongData3d",signature=c("ANY","ANY","ANY","ANY","ANY"),.clusterLongData3d.constructor)
+setMethod("clusterLongData3d",signature=c("ANY","ANY","ANY","ANY","ANY","ANY"),.clusterLongData3d.constructor)
 
 cld3d <- clusterLongData3d
 
@@ -217,10 +217,10 @@ cat("\n####################################################################
 ####################################################################\n")
 
 ### On a un cld et un num, on plot le longData et la Partition qui va avec.
-.plot3d.clusterLongData3d.num <- function(x,y,varY=1,varZ=2,parTraj=parTRAJ(type="n"),parMean=parMEAN(),nbSample=200){
+.plot3d.clusterLongData3d.num <- function(x,y,varY=1,varZ=2,parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...){
     if(length(y)==1){y<-c(y,1)}else{}
     yPartition <- x[paste('c',y[1],sep="")][[y[2]]]
-    plot3d(x=as(x,"LongData3d"),y=yPartition,varY=varY,varZ=varZ,parTraj=parTraj,parMean=parMean,nbSample=nbSample)
+    plotTraj3d(x=as(x,"LongData3d"),y=yPartition,varY=varY,varZ=varZ,parTraj=parTraj,parMean=parMean,nbSample=nbSample,...)
     return(invisible())
 }
 setMethod("plot3d",signature=c("ClusterLongData3d","numeric"),.plot3d.clusterLongData3d.num)
@@ -229,19 +229,20 @@ setMethod("plot3d",signature=c("ClusterLongData3d","numeric"),.plot3d.clusterLon
 ### Si y est manquant :
 ###  - soit il est calculable et on le calcul puis on appelle plot.ClusterLongData3d
 ###  - soit il n'est pas calculable et on appelle plot.LongData3d.num
-.plot3d.clusterLongData3d.missingY <- function(x,y,varY=1,varZ=2,parTraj=parTRAJ(type="n"),parMean=parMEAN(),nbSample=200){
+.plot3d.clusterLongData3d.missingY <- function(x,y,varY=1,varZ=2,parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...){
     if(all(is.tna(x["criterionValues"]))){
-        plot3d(x=as(x,"LongData3d"),varY=varY,varZ=varZ,parTraj=parTraj,nbSample=nbSample)
+        plotTraj3d(x=as(x,"LongData3d"),varY=varY,varZ=varZ,parTraj=parTraj,nbSample=nbSample,...)
         return(invisible())
     }else{
         allCrit <- sapply(x["criterionValues"] , function(x){result <- x[[1]];names(result)<-NULL;result})
         y <- as.integer(substr(names(which.max(allCrit)),2,3))
     }
-#    .plot3d.clusterLongData3d.num(x,y,varY=varY,varZ=varZ,parTraj=parTraj,parMean=parMean,nbSample=nbSample)
-    plot3d(x,y,varY=varY,varZ=varZ,parTraj=parTraj,parMean=parMean,nbSample=nbSample)
+    .plot3d.clusterLongData3d.num(x,y,varY=varY,varZ=varZ,parTraj=parTraj,parMean=parMean,nbSample=nbSample,...)
+### ICI ###    plot3d(x,y,varY=varY,varZ=varZ,parTraj=parTraj,parMean=parMean,nbSample=nbSample,...)
     return(invisible())
 }
 setMethod("plot3d",signature=c("ClusterLongData3d","missing"),.plot3d.clusterLongData3d.missingY)
+setMethod("plot3d",signature=c("ClusterLongData3d","Partition"),function(x,y,...){plotTraj3d(x,y,...)})
 
 
 
@@ -268,14 +269,14 @@ setMethod("plot3dPdf",signature=c("ClusterLongData3d","missing"),.plot3dPdf.clus
 
 
 ### On a un cld et un num, on plot le longData3d et la Partition qui va avec.
-.plot.clusterLongData3d.num <- function(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200){
+.plot.clusterLongData3d.num <- function(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,...){
 #    if(class(y[1])=="character"){
  #       y[1] <- substr(y[1],2,3)
   #      y <- as.numeric(y)
    # }else{}
     if(length(y)==1){y<-c(y,1)}else{}
     yPartition <- x[paste('c',y[1],sep="")][[y[2]]]
-    plot(x=as(x,"LongData3d"),y=yPartition,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample)
+    plotTraj(x=as(x,"LongData3d"),y=yPartition,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample,...) ### ICI ###
     return(invisible())
 }
 #setMethod("plot",signature=c("ClusterLongData3d","ANY"),.clusterLongData3d.num.plot)
@@ -284,19 +285,19 @@ setMethod("plot3dPdf",signature=c("ClusterLongData3d","missing"),.plot3dPdf.clus
 ### Si y est manquant :
 ###  - soit il est calculable et on le calcul puis on appelle plot.ClusterLongData3d
 ###  - soit il n'est pas calculable et on appelle plot.LongData3d.num
-.plot.clusterLongData3d.missingY <- function(x,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200){
+.plot.clusterLongData3d.missingY <- function(x,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,...){
     if(all(is.tna(x["criterionValues"]))){
-        plot(x=as(x,"LongData3d"),parTraj=parTraj,parWin=parWin,nbSample=nbSample)
+        plotTraj(x=as(x,"LongData3d"),parTraj=parTraj,parWin=parWin,nbSample=nbSample,...) ### ICI ###
     }else{
         allCrit <- sapply(x["criterionValues"] , function(x){result <- x[[1]];names(result)<-NULL;result})
         y <- as.integer(substr(names(which.max(allCrit)),2,3))
-        .plot.clusterLongData3d.num(x,y,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample)
+        .plot.clusterLongData3d.num(x,y,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample,...)
     }
     return(invisible())
 }
 
 ##setMethod("plot",signature=c("ClusterLongData3d","missing"),.clusterLongData3d.plot)
-.plotAll <- function(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100){
+.plotAll <- function(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100,...){
     switch(EXPR=toPlot,
            "both"={
                listScreen <- split.screen(matrix(c(0,0.3,0.3,1,0,0,1,1),2))
@@ -304,9 +305,9 @@ setMethod("plot3dPdf",signature=c("ClusterLongData3d","missing"),.plot3dPdf.clus
                parSubWindows <- parWin
                parSubWindows['closeScreen']<-TRUE
                if(missing(y)){
-                   .plot.clusterLongData3d.missingY(x,parTraj=parTraj,parMean=parMean,parWin=parSubWindows,nbSample=nbSample)
+                   .plot.clusterLongData3d.missingY(x,parTraj=parTraj,parMean=parMean,parWin=parSubWindows,nbSample=nbSample,...)
                }else{
-                   .plot.clusterLongData3d.num(x,y,parTraj=parTraj,parMean=parMean,parWin=parSubWindows,nbSample=nbSample)
+                   .plot.clusterLongData3d.num(x,y,parTraj=parTraj,parMean=parMean,parWin=parSubWindows,nbSample=nbSample,...)
                }
                screen(listScreen[1])
                ## ??? Liste des arguments a vérifier
@@ -321,9 +322,9 @@ setMethod("plot3dPdf",signature=c("ClusterLongData3d","missing"),.plot3dPdf.clus
            },
            "traj"={
                if(missing(y)){
-                   .plot.clusterLongData3d.missingY(x,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample)
+                   .plot.clusterLongData3d.missingY(x,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample,...)
                }else{
-                   .plot.clusterLongData3d.num(x,y,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample)
+                   .plot.clusterLongData3d.num(x,y,parTraj=parTraj,parMean=parMean,parWin=parWin,nbSample=nbSample,...)
                }
            },
            "criterion"={
@@ -333,21 +334,22 @@ setMethod("plot3dPdf",signature=c("ClusterLongData3d","missing"),.plot3dPdf.clus
 }
 setMethod("plot",signature=c("ClusterLongData3d","missing"),.plotAll)
 setMethod("plot",signature=c("ClusterLongData3d","numeric"),.plotAll)
+setMethod("plot",signature=c("ClusterLongData3d","Partition"),function(x,y,...){plotTraj(x,y,...)})
 
 
 gald3d <- generateArtificialLongData3d <- function(
     nbEachClusters=50,time=0:10,varNames=c("V","T"),
-    functionClusters=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
-    constantPersonal=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
-    functionNoise=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
+    meanTrajectories=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
+    personalVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
+    residualVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
     decimal=2,percentOfMissing=0#,clusterLongData=TRUE
 ){
-    nbClusters <- length(functionClusters)
+    nbClusters <- length(meanTrajectories)
     if(length(nbEachClusters)==1){nbEachClusters <- rep(nbEachClusters,nbClusters)}else{}
-    if(is.numeric(constantPersonal)){eval(parse(text=paste("constantPersonal <- function(t){c(rnorm(1,0,",constantPersonal,"),rnorm(1,0,",constantPersonal,"))}",sep="")))}else{}
-    if(length(constantPersonal)==1){constantPersonal <- rep(list(constantPersonal),nbClusters)}else{}
-    if(is.numeric(functionNoise)){eval(parse(text=paste("functionNoise <- function(t){c(rnorm(1,0,",functionNoise,"),rnorm(1,0,",functionNoise,"))}",sep="")))}else{}
-    if(length(functionNoise)==1){functionNoise <- rep(list(functionNoise),nbClusters)}else{}
+    if(is.numeric(personalVariation)){eval(parse(text=paste("personalVariation <- function(t){c(rnorm(1,0,",personalVariation,"),rnorm(1,0,",personalVariation,"))}",sep="")))}else{}
+    if(length(personalVariation)==1){personalVariation <- rep(list(personalVariation),nbClusters)}else{}
+    if(is.numeric(residualVariation)){eval(parse(text=paste("residualVariation <- function(t){c(rnorm(1,0,",residualVariation,"),rnorm(1,0,",residualVariation,"))}",sep="")))}else{}
+    if(length(residualVariation)==1){residualVariation <- rep(list(residualVariation),nbClusters)}else{}
     if(length(percentOfMissing)==1){percentOfMissing <- rep(percentOfMissing,nbClusters)}else{}
     nbTime <- length(time)
     nbVar <- length(varNames)
@@ -356,7 +358,7 @@ gald3d <- generateArtificialLongData3d <- function(
 
     traj <- array(NA,dim=c(sum(nbEachClusters),nbTime,nbVar),dimnames=c(idAll,paste("t",time,sep=""),varNames))
     for (iIndiv in 1:nrow(traj)){
-        traj[iIndiv,,] <- t(sapply(time,functionClusters[[indivInCluster[iIndiv]]])+constantPersonal[[indivInCluster[iIndiv]]](0)+sapply(time,functionNoise[[indivInCluster[iIndiv]]]))
+        traj[iIndiv,,] <- t(sapply(time,meanTrajectories[[indivInCluster[iIndiv]]])+personalVariation[[indivInCluster[iIndiv]]](0)+sapply(time,residualVariation[[indivInCluster[iIndiv]]]))
     }
     traj <- round(traj,digits=decimal)
 
