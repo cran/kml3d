@@ -5,18 +5,18 @@
 \title{~ Overview: KmL3D, K-means for joint Longitudinal data ~}
 
 \description{
-  \code{kml3d} is a new implementation of k-means for longitudinal data (or trajectories).
+  \code{KmL3D} is a new implementation of k-means for longitudinal data (or trajectories).
   Here is an overview of the package.
 }
 \details{
   \tabular{ll}{
-    Package: \tab kml3d\cr
+    Package: \tab KmL3D\cr
     Type: \tab Package\cr
-    Version: \tab 2.1\cr
-    Date: \tab 2012-08-01\cr
+    Version: \tab 2.1.1\cr
+    Date: \tab 2012-12-01\cr
     License: \tab GPL (>= 2)\cr
-    Lazyload: \tab yes\cr
-    Depends: \tab methods,graphics,rgl,misc3d,longitudinalData(>=2.1),kml(>=2.1)\cr
+    LazyData: \tab no\cr
+    Depends: \tab methods,graphics,rgl,misc3d,longitudinalData(>=2.1),KmL(>=2.1)\cr
     URL:\tab http://www.r-project.org\cr
     URL:\tab http://christophe.genolini.free.fr/kml\cr
   }
@@ -24,7 +24,7 @@
 
 
 \section{Overview}{
-  To cluster data, \code{kml3d} go through three steps, each of which
+  To cluster data, \code{KmL3D} go through three steps, each of which
   is associated to some functions:
 
   \enumerate{
@@ -77,7 +77,7 @@
 
   To date, it is not possible to know the optimum number of clusters
   even if the calculatous of some qualities criterion can gives some
-  clues. kml3d computes various of them.
+  clues. \code{kml3d} computes various of them.
 
   In the end, \code{kml3d} tests by default 2, 3, 4, 5 et 6 clusters, 20 times each.
 }
@@ -99,7 +99,7 @@
 }
 
 \section{4. Visualizing and exporting 3D object}{
-  \code{kml3d} also propose tools to visualize the trajectories in
+  \code{KmL3D} also propose tools to visualize the trajectories in
   3D. \code{\link{plot3d}} using the library \code{rgl} to plot two
   variables according to time (either the all set of joint-trajectories, or
   just the mean joint-trajectories). Then the user can make the
@@ -131,8 +131,9 @@ data(pregnandiol)
 names(pregnandiol)
 cld3dPregTemp <- cld3d(pregnandiol,timeInData=list(preg=1:30*2+1,temp=1:30*2))
 
-### 2. Building "optimal" clusteration (with only 3 redrawings)
-kml3d(cld3dPregTemp,nbRedrawing=3,toPlot="both")
+### 2. Building "optimal" clusteration (with only 2 redrawings)
+###    Real analysis needs at least 20 redrawings
+kml3d(cld3dPregTemp,3:5,nbRedrawing=2,toPlot="both")
 
 ### 3. Exporting results
 try(choice(cld3dPregTemp))

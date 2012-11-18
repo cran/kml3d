@@ -47,6 +47,37 @@ plot(myCld)
 
 
 cleanEx()
+nameEx("KmL3D-package")
+### * KmL3D-package
+
+flush(stderr()); flush(stdout())
+
+### Name: kml3d-package
+### Title: ~ Overview: KmL3D, K-means for joint Longitudinal data ~
+### Aliases: kml3d-package [,ParChoice-method [<-,ParChoice-method
+### Keywords: package dplot iplot chron spatial classif cluster
+###   nonparametric ts robust models
+
+### ** Examples
+
+### 1. Data Preparation
+data(pregnandiol)
+names(pregnandiol)
+cld3dPregTemp <- cld3d(pregnandiol,timeInData=list(preg=1:30*2+1,temp=1:30*2))
+
+### 2. Building "optimal" clusteration (with only 2 redrawings)
+###    Real analysis needs at least 20 redrawings
+kml3d(cld3dPregTemp,nbRedrawing=2,toPlot="both")
+
+### 3. Exporting results
+try(choice(cld3dPregTemp))
+
+### 4. Visualizing in 3D
+plot3d(cld3dPregTemp,4,parTraj=parTRAJ(type="n"))
+
+
+
+cleanEx()
 nameEx("affectIndiv3d")
 ### * affectIndiv3d
 
@@ -133,10 +164,10 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 ### Creation of articficial data
-cld1 <- gald3d()
+cld1 <- gald3d(20)
 
-### Clusterisation
-kml3d(cld1,nbRedrawing=3,toPlot='both')
+### Clusterisation (real analysis needs at least 20 redrawings, not 2)
+kml3d(cld1,nbRedrawing=2,toPlot='both')
 
 ### Selection of the clustering we want
 #     (note that "try" is for compatibility with CRAN only,
@@ -254,36 +285,6 @@ plot3d(ex2,part2)
 
 
 cleanEx()
-nameEx("kml3d-package")
-### * kml3d-package
-
-flush(stderr()); flush(stdout())
-
-### Name: kml3d-package
-### Title: ~ Overview: KmL3D, K-means for joint Longitudinal data ~
-### Aliases: kml3d-package [,ParChoice-method [<-,ParChoice-method
-### Keywords: package dplot iplot chron spatial classif cluster
-###   nonparametric ts robust models
-
-### ** Examples
-
-### 1. Data Preparation
-data(pregnandiol)
-names(pregnandiol)
-cld3dPregTemp <- cld3d(pregnandiol,timeInData=list(preg=1:30*2+1,temp=1:30*2))
-
-### 2. Building "optimal" clusteration (with only 3 redrawings)
-kml3d(cld3dPregTemp,nbRedrawing=3,toPlot="both")
-
-### 3. Exporting results
-try(choice(cld3dPregTemp))
-
-### 4. Visualizing in 3D
-plot3d(cld3dPregTemp,4,parTraj=parTRAJ(type="n"))
-
-
-
-cleanEx()
 nameEx("kml3d")
 ### * kml3d
 
@@ -300,12 +301,12 @@ flush(stderr()); flush(stdout())
 cld1 <- generateArtificialLongData3d(15)
 
 ### We suspect 2, 3, 4 or 5 clusters, we want 3 redrawing.
-#     We want to "see" what happen (so toPlot="both")
+###   We want to "see" what happen (so toPlot="both")
 kml3d(cld1,2:5,3,toPlot="both")
 
 ### 3 seems to be the best.
-#     We don't want to see again, we want to get the result as fast as possible.
-#     Just, to check the overall process, we plot the criterion evolution
+###   We don't want to see again, we want to get the result as fast as possible.
+###   Just, to check the overall process, we plot the criterion evolution
 kml3d(cld1,3,10,toPlot="criterion")
 
 
