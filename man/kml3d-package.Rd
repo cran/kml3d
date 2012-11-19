@@ -12,11 +12,11 @@
   \tabular{ll}{
     Package: \tab KmL3D\cr
     Type: \tab Package\cr
-    Version: \tab 2.1.1\cr
+    Version: \tab 2.1.2\cr
     Date: \tab 2012-12-01\cr
     License: \tab GPL (>= 2)\cr
-    LazyData: \tab no\cr
-    Depends: \tab methods,graphics,rgl,misc3d,longitudinalData(>=2.1),KmL(>=2.1)\cr
+    LazyData: \tab yes\cr
+    Depends: \tab methods,graphics,rgl,misc3d,longitudinalData(>=2.1.2),KmL(>=2.1.2)\cr
     URL:\tab http://www.r-project.org\cr
     URL:\tab http://christophe.genolini.free.fr/kml\cr
   }
