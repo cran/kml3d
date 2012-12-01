@@ -100,10 +100,10 @@ choice(object, typeGraph = "bmp")
 
 \examples{
 ### Creation of articficial data
-cld1 <- gald3d()
+cld1 <- gald3d(20)
 
-### Clusterisation
-kml3d(cld1,nbRedrawing=3,toPlot='both')
+### Clusterisation (real analysis needs at least 20 redrawings, not 2)
+kml3d(cld1,nbRedrawing=2,toPlot='both')
 
 ### Selection of the clustering we want
 #     (note that "try" is for compatibility with CRAN only,

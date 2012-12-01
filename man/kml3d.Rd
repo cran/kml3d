@@ -116,12 +116,12 @@ kml3d(object, nbClusters = 2:6, nbRedrawing = 20, toPlot = "none",
 cld1 <- generateArtificialLongData3d(15)
 
 ### We suspect 2, 3, 4 or 5 clusters, we want 3 redrawing.
-#     We want to "see" what happen (so toPlot="both")
+###   We want to "see" what happen (so toPlot="both")
 kml3d(cld1,2:5,3,toPlot="both")
 
 ### 3 seems to be the best.
-#     We don't want to see again, we want to get the result as fast as possible.
-#     Just, to check the overall process, we plot the criterion evolution
+###   We don't want to see again, we want to get the result as fast as possible.
+###   Just, to check the overall process, we plot the criterion evolution
 kml3d(cld1,3,10,toPlot="criterion")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
