@@ -175,19 +175,44 @@ cld3d <- clusterLongData3d
 setMethod("show","ClusterLongData3d",.ClusterLongData3d.show)
 
 
+
 cat("### Getteur ###\n")
-.ClusterLongData3d.get <- function(x,i,j,drop){
-    if(is.numeric(i)){
+setMethod(
+  "[",
+  signature=signature(x="ClusterLongData3d", i="character", j="ANY",drop="ANY"),
+  definition=function (x, i, j="missing", ..., drop = TRUE){
+    .local <- function (x, i, j, drop){
+      if (is.numeric(i)) {
         stop("[ClusterLongData3d:getteur]: to get a clusters list, use ['ci']")
-    }else{}
-    if(i%in%c(CRITERION_NAMES,"criterionActif",CLUSTER_NAMES,"criterionValues","criterionValuesAsMatrix","sorted","initializationMethod")){
-        x <- as(x,"ListPartition")
-    }else{
-        x <- as(x,"LongData3d")
+      }else{}
+      if (i %in% c("criterionValues", "criterionValuesAsMatrix")){
+        j <- x['criterionActif']
+      }else{}
+      if (i %in% c(CRITERION_NAMES, "criterionActif", CLUSTER_NAMES,
+                   "criterionValues", "criterionValuesAsMatrix", "sorted",
+                   "initializationMethod")) {
+        x <- as(x, "ListPartition")
+      }else{
+        x <- as(x, "LongData3d")
+      }
+      return(x[i, j])
     }
-    return(x[i,j])
-}
-setMethod("[","ClusterLongData3d",.ClusterLongData3d.get)
+    .local(x, i, j, ..., drop)
+  }
+)
+
+## .ClusterLongData3d.get <- function(x,i,j,drop){
+##     if(is.numeric(i)){
+##         stop("[ClusterLongData3d:getteur]: to get a clusters list, use ['ci']")
+##     }else{}
+##     if(i%in%c(CRITERION_NAMES,"criterionActif",CLUSTER_NAMES,"criterionValues","criterionValuesAsMatrix","sorted","initializationMethod")){
+##         x <- as(x,"ListPartition")
+##     }else{
+##         x <- as(x,"LongData3d")
+##     }
+##     return(x[i,j])
+## }
+## setMethod("[","ClusterLongData3d",.ClusterLongData3d.get)
 
 #getCluster <- function(xCld,nbCluster,clusterRank,asInteger=FALSE){
 #    return(xCld[paste("c",nbCluster,sep="")][[clusterRank]][ifelse(asInteger,"clustersAsInteger","clusters")])
@@ -199,16 +224,28 @@ cat("### Setteur ###\n")
 ### Héritage direct de ListPartition puisque set n'est pas défini pour LongData
 ### ATTENTION !!! Normalement, il faudrait vérifier que la partition est de la BONNE TAILLE !!!
 
-.ClusterLongData3d.set <- function(x,i,j,...,value){
-    if(i=="add"){
-        if(length(value["clusters"])!=x["nbIdFewNA"]){
-            stop("[ClusterLongData3d:set] the lenght of the Partition should be the same than 'idFewNA'")
-        }else{}
-    }
-    callNextMethod(x, i, j,..., value=value)
-}
-setReplaceMethod("[","ClusterLongData3d",.ClusterLongData3d.set)
+## .ClusterLongData3d.set <- function(x,i,j,...,value){
+##     if(i=="add"){
+##         if(length(value["clusters"])!=x["nbIdFewNA"]){
+##             stop("[ClusterLongData3d:set] the lenght of the Partition should be the same than 'idFewNA'")
+##         }else{}
+##     }
+##     callNextMethod(x, i, j,..., value=value)
+## }
+## setReplaceMethod("[","ClusterLongData3d",.ClusterLongData3d.set)
 
+setMethod(
+  f="[<-",
+  signature=signature(x="ClusterLongData3d", i="character", j="missing",value="missing"),
+  definition=function (x, i, j="missing", ..., value){
+    if (i == "add") {
+      if (length(value["clusters"]) != length(x["idFewNA"])) {
+        stop("[ClusterLongData3d:set] the lenght of the Partition should be the same than 'idFewNA'")
+      }else{}
+    }
+    callNextMethod(x, i, j=j, ..., value = value)
+  }
+)
 
 
 cat("\n####################################################################

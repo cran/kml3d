@@ -12,13 +12,15 @@
 }
 \usage{
 gald3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
-    meanTrajectories=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
+    meanTrajectories=list(function(t){c(0,0)},
+       function(t){c(10,10)},function(t){c(10-t,10-t)}),
     personalVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
     residualVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
     decimal=2,percentOfMissing=0)
 
 generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
-    meanTrajectories=list(function(t){c(0,0)},function(t){c(10,10)},function(t){c(10-t,10-t)}),
+    meanTrajectories=list(function(t){c(0,0)},
+       function(t){c(10,10)},function(t){c(10-t,10-t)}),
     personalVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
     residualVariation=function(t){c(rnorm(1,0,2),rnorm(1,0,2))},
     decimal=2,percentOfMissing=0)

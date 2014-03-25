@@ -14,7 +14,8 @@
   \code{\linkS4class{Partition}}. One graphe for each variable is displayed.
 }
 \usage{
-\S4method{plot}{ClusterLongData3d,numeric}(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100,...)
+\S4method{plot}{ClusterLongData3d,numeric}(x,y,parTraj=parTRAJ(),parMean=parMEAN(),
+   parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100,...)
 
 %,toPlot=c("both"),criterion=x["criterionActif"],nbCriterion=100,standardized = FALSE)
 }

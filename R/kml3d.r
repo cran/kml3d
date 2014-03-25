@@ -114,7 +114,6 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     nameObject<-deparse(substitute(object))
 
     if(parAlgo["scale"]){scale(object)}else{}
-print(nameObject)
     on.exit(if(toPlot!="none"){close.screen(listScreen)}else{})
 
     nbIdFewNA <- object["nbIdFewNA"]

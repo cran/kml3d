@@ -1,3 +1,0 @@
-
-Création d'une fontion de suppression des manquantes "at start"
-Et réciproquement ! (données du GRIP)

@@ -32,4 +32,4 @@ exportClasses(
               "ClusterLongData3d"
               )
 
-import(methods,graphics,rgl,misc3d,longitudinalData,kml)
+import(methods,graphics,rgl,misc3d,longitudinalData,kml,clv)

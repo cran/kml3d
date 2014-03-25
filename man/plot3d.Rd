@@ -13,8 +13,10 @@
 }
 
 \usage{
-\S4method{plot3d}{ClusterLongData3d,missing}(x,y,varY=1,varZ=2,parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...)
-\S4method{plot3d}{ClusterLongData3d,numeric}(x,y,varY=1,varZ=2,parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...)
+\S4method{plot3d}{ClusterLongData3d,missing}(x,y,varY=1,varZ=2,
+   parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...)
+\S4method{plot3d}{ClusterLongData3d,numeric}(x,y,varY=1,varZ=2,
+   parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...)
 }
 
 \arguments{
@@ -62,7 +64,8 @@ id2=1:120
 f <- function(id,t)((id-1)\%\%3-1) * t
 g <- function(id,t)(id\%\%2+1)*t
 h <- function(id,t)(id\%\%4-0.5)*(20-t)
-myCld <- clusterLongData3d(array(cbind(outer(id2,time,f),outer(id2,time,g),outer(id2,time,h))+rnorm(120*8*3,0,3),dim=c(120,8,3)))
+myCld <- clusterLongData3d(array(cbind(outer(id2,time,f),outer(id2,time,g),
+   outer(id2,time,h))+rnorm(120*8*3,0,3),dim=c(120,8,3)))
 part <- partition(rep(1:6,20))
 
 ### Basic plot

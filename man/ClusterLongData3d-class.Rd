@@ -3,7 +3,9 @@
 \docType{class}
 \alias{ClusterLongData3d-class}
 \alias{[,ClusterLongData3d-method}
+\alias{[,ClusterLongData3d,character-method}
 \alias{[<-,ClusterLongData3d-method}
+\alias{[<-,ClusterLongData3d,character,missing,missing-method}
 \alias{show,ClusterLongData3d-method}
 
 \title{~ Class: ClusterLongData3d ~}
@@ -95,6 +97,11 @@
   }
 }
 
+\section{Special thanks}{
+   Special thanks to Boris Hejblum for debugging the '[' and '[<-' operators (the
+   previous version was not compatible with the matrix package, which is
+   used by lme4).
+}
 
 \examples{
 ### Building longData
