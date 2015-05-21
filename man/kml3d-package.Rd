@@ -12,8 +12,8 @@
   \tabular{ll}{
     Package: \tab KmL3D\cr
     Type: \tab Package\cr
-    Version: \tab 2.2\cr
-    Date: \tab 2014-01-01\cr
+    Version: \tab 2.3\cr
+    Date: \tab 2015-05-05\cr
     License: \tab GPL (>= 2)\cr
     LazyData: \tab yes\cr
     Depends: \tab methods,graphics,rgl,misc3d,longitudinalData(>=2.2),KmL(>=2.2)\cr

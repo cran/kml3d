@@ -22,7 +22,8 @@ choice(object, typeGraph = "bmp")
 
 \details{
   \code{choice} is a function that lets the user see the \code{\linkS4class{Partition}} found by \code{\link{kml3d}}.
-  At first, \code{choice} opens a graphics window. On the left side, all
+  At first, \code{choice} opens a graphics window (for Linux user, the windows should be explicitly 
+  open using \code{x11(type = "Xlib")}). On the left side, all
   the \code{Partition} contain in \code{Object} are ploted by a
   number (the number of cluster of the Partition). The level of the
   number is proportionnal to a quality criteria (like Calinski &
@@ -49,7 +50,7 @@ choice(object, typeGraph = "bmp")
     \item{'y/h'}{Change the number of symbols.}
   }
 
-  When 'return' is pressed, the selected \code{Partition} are
+  When 'return' is pressed (or 'm' using Linux), the selected \code{Partition} are
   exported. Exporting is done in a specific named
   \code{objectName-Cx-y} where x is the number of cluster and y is the
   order in the sublist. Four files are created

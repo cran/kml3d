@@ -1,0 +1,22 @@
+citHeader("To cite kml3d in publications use:")
+
+citEntry(entry = "Article",
+  title        = "{kml} and {kml3d}: {R} Packages to Cluster Longitudinal Data",
+  author       = personList(as.person("Christophe Genolini"),
+                   as.person("Xavier Alacoque"),
+                   as.person("Marianne Sentenac"),
+                   as.person("Catherine Arnaud")),
+  journal      = "Journal of Statistical Software",
+  year         = "2015",
+  volume       = "65",
+  number       = "4",
+  pages        = "1--34",
+  url          = "http://www.jstatsoft.org/v65/i04/",
+
+  textVersion  =
+  paste("Christophe Genolini, Xavier Alacoque, Marianne Sentenac, Catherine Arnaud (2015).",
+        "kml and kml3d: R Packages to Cluster Longitudinal Data.",
+        "Journal of Statistical Software, 65(4), 1-34.",
+        "URL http://www.jstatsoft.org/v65/i04/.")
+)
+

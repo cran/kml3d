@@ -1,4 +1,4 @@
-6d2fb1d708356daf0281d4607c0a0f9f *DESCRIPTION
+7d10975539516088b13846c9747052d8 *DESCRIPTION
 263106bd1bfdbdaf5846d1a4d382424e *NAMESPACE
 d83175ea24a97de937030752ec0a3ff7 *R/clusterLongData3d.r
 28f4679fc4d56ee44e72c9ffcb80dec4 *R/distance3d.r
@@ -7,14 +7,15 @@ efffbf62452697f35a8f60f12d023226 *R/kml3d.r
 042df49c90832d75ac286097b2e0d607 *data/pregnandiol.csv.gz
 01cadc4ad1bcbda8e1697626a5c13929 *data/pregnandiol.rda
 982939bf627473842622f0a2ec4d148c *data/pregnandiol.txt.gz
+4554b3bf13e8bc1884f7d7bc3e6923df *inst/CITATION
 fb61d9599f7ca7f0719350eee4469665 *man/ClusterLongData3d-class.Rd
 dea8202fde2f72698b2ac9d19ae1c2b0 *man/affectIndiv3d.Rd
 c8b4a933dd591da5480059a15c0f97c6 *man/calculTrajMean3d.Rd
-3ac4c298ab6a2e4e8042789a1c807339 *man/choice.Rd
+9e7b932339bb68218253e80b73645002 *man/choice.Rd
 b09350cda2d6811ea9c1b5e090341521 *man/clusterLongData3d.Rd
 fd3d523f91d4a6d4065db11109df138e *man/dist3d.Rd
 505e473986ade82cf80c0f1d9f81fa5e *man/generateArtificialLongData3d.Rd
-b5ebda324f2cc8d9a27728538a9886fb *man/kml3d-package.Rd
+739b2d7bfa5e818c42c31a90f0484e3f *man/kml3d-package.Rd
 4c8ed30bd8c941a5a4528b98b14ca681 *man/kml3d.Rd
 605182f0b277cfea3fbefafcc592e4b8 *man/parKml3d.Rd
 cfe1dca11a58be88c24794c55aa85eee *man/plot.Rd
