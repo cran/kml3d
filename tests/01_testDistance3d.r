@@ -1,6 +1,6 @@
 source("../R/distance3d.r")
 
-cleanProg(dist3d)
+detectGlobal(dist3d)
 x <- matrix(c(1,2,3),1)
 y <- matrix(c(0,0,0),1)
 dist3d(x,y)

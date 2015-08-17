@@ -1,18 +1,18 @@
 source("../R/clusterLongData3d.r")
 
-cat("\n####################################################################
-######################## Test ClusterLongData ######################
+cat("
+  ####################################################################
+ ######################## Test ClusterLongData ######################
 ####################################################################\n")
 
 
 data <- data.frame(id=1:5,A11=c(12,13,12,13,12),A13=c(13,13,15,13,15),A14=c(15,12,15,12,15),
                    P11=c(45,46,46,46,46),P12=c(47,48,49,48,49),P14=c(49,49,48,49,49))
 
-cleanProg(.ClusterLongData3d.validity,,,0)
+detectGlobal(ClusterLongData3d_validity)
 
 ### Constructeurs
-cleanProg(clusterLongData3d)
-cleanProg(.clusterLongData3d.constructor,,,1) # all
+detectGlobal(clusterLongData3d,1) # all
 
 new("ClusterLongData")
 
@@ -54,13 +54,6 @@ new("ClusterLongData3d",
 
 
 
-cat("\n###################################################################
-####################### Test ClusterLongData ######################
-########################### Constructeur ##########################
-###################################################################\n")
-
-cleanProg(.clusterLongData3d.constructor,,,1) #all
-
 clusterLongData3d()
 #longData(traj=array(c(1,2,3,1,4,6,1,8,10),dim=c(3,3)))
 
@@ -78,8 +71,9 @@ clusterLongData3d(traj=tr4n,idAll=1:200,time=1:6,varNames=c("P","A"),maxNA=c(2,1
 
 
 
+
 ### Base de données
-cleanProg(.ClusterLongData3d.show,,,0)
+detectGlobal(ClusterLongData3d_show)
 
 CLD0 <- clusterLongData3d()
 CLD1 <- clusterLongData3d(traj=tr1,idAll=c(101,102,104),time=c(1,2,4,8,16),varNames=c("Pa","Av"),maxNA=3)
@@ -109,12 +103,15 @@ CLD7n <- clusterLongData3d(tra7n)
 
 
 cat("
-############# Set ##############
-### Héritage direct de partition
-")
+  ###################################################################
+ ############################ Get & Set ############################
+###################################################################\n")
 
-cleanProg(.ClusterLongData3d.get,,,2) # CLUSTER_NAMES CRITERION_NAMES
 
+detectGlobal(ClusterLongData3d_get,2) # CLUSTER_NAMES CRITERION_NAMES
+detectGlobal(ClusterLongData3d_set,2) # CLUSTER_NAMES CRITERION_NAMES
+
+############# Set #############
 CLD3['add'] <- p3a
 CLD3['add'] <- p3b
 CLD3['add'] <- p3c
@@ -145,23 +142,15 @@ getClusters(CLD7,3,1,TRUE)
 getClusters(CLD7,3,2)
 
 
-cleanProg(.plot3d.clusterLongData3d.num)
-cleanProg(.plot3d.clusterLongData3d.missingY)
-cleanProg(.plot3dPdf.clusterLongData3d.num)
-cleanProg(.plot3dPdf.clusterLongData3d.missingY)
-cleanProg(.plot.clusterLongData3d.num)
-cleanProg(.plot.clusterLongData3d.missingY)
-cleanProg(.plotAll)
 
 
-plot(CLD3)
-plot(CLD3,2)
-plot(CLD3,c(3,1),toPlot="traj")
-plot(CLD3,c(2,1),toPlot="criterion")
-plot(CLD3,c(3,1))
-plot(CLD3,c(3,2))
-tryBug(plot(CLD3,c("c4",1))) ### Avant c'était possible
+cat("
+  #####################################################################
+ ############################### plot3d ##############################
+#####################################################################")
 
+detectGlobal(ClusterLongData3d_num_plot3d)
+detectGlobal(ClusterLongData3d_missingY_plot3d)
 plot3d(CLD7)
 plot3d(CLD7,2)
 plot3d(CLD7,c(3,1))
@@ -169,13 +158,79 @@ plot3d(CLD7,c(2,1))
 plot3d(CLD7,c(3,1))
 plot3d(CLD7,c(3,2))
 
-plot3dPdf(CLD7)
+detectGlobal(ClusterLongData3d_plotTrajMeans,1)
+plotTraj3d(CLD7,3)
+plotTraj3d(CLD7,c(3,1))
+plotTraj3d(CLD7,c(4,1))
+plotTraj3d(CLD7,c(3,1))
+plotTraj3d(CLD7,c(3,2))
+
+
+detectGlobal(ClusterLongData3d_num_plotMeans3d)
+plotMeans3d(CLD7,3)
+plotMeans3d(CLD7,c(3,1))
+plotMeans3d(CLD7,c(4,1))
+plotMeans3d(CLD7,c(3,1))
+plotMeans3d(CLD7,c(3,2))
+
+
+
+
+cat("
+  #####################################################################
+ ############################## plot3dPdf ############################
+#####################################################################")
+
+detectGlobal(ClusterLongData3d_num_plot3dPdf)
 plot3dPdf(CLD7,2)
 plot3dPdf(CLD7,c(3,1))
 plot3dPdf(CLD7,c(2,1))
 plot3dPdf(CLD7,c(3,1))
 plot3dPdf(CLD7,c(3,2))
 
+
+
+
+cat("
+  #####################################################################
+ ################################ plot ###############################
+#####################################################################")
+
+detectGlobal(ClusterLongData3d_num_plot3d)
+detectGlobal(ClusterLongData3d_missingY_plot3d)
+ClusterLongData3d_plotTrajMeans(CLD7,2)
+ClusterLongData3d_plotTrajMeans(CLD7,c(3,1))
+ClusterLongData3d_plotTrajMeans(CLD7,c(2,1))
+ClusterLongData3d_plotTrajMeans(CLD7,c(3,1),parMean=parMEAN(type="n"))
+ClusterLongData3d_plotTrajMeans(CLD7,c(3,2))
+
+detectGlobal(ClusterLongData3d_plotTrajMeans,1)
+ClusterLongData3d_plot(CLD7,3)
+ClusterLongData3d_plot(CLD3,c(3,1))
+ClusterLongData3d_plot(CLD7,c(4,1))
+ClusterLongData3d_plot(CLD7,c(3,1))
+ClusterLongData3d_plot(CLD3,c(3,2))
+
+
+detectGlobal(ClusterLongData3d_plotTrajMeans,1)
+plot(CLD3)
+plot(CLD7,c(4,1))
+plot(CLD7,c(3,1))
+plot(CLD3,c(3,2))
+plot(CLD7,c(4,1),toPlot="traj")
+plot(CLD7,c(3,1),toPlot="criterion")
+plot(CLD3,c(3,2),toPlot="both")
+
+
+detectGlobal(ClusterLongData3d_plotTraj,1)
+plotTraj(CLD7,c(4,1))
+plotTraj(CLD7,c(3,1))
+plotTraj(CLD3,c(3,2))
+
+detectGlobal(ClusterLongData3d_plotTraj,1)
+plotMeans(CLD7,c(4,1))
+plotMeans(CLD7,c(3,1))
+plotMeans(CLD3,c(3,2))
 
 
 cat("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -80,7 +80,7 @@
   kml3d(myCld3d,3:4,1)
 
   ### Creation of the scene
-  scene <- plot3dPdf(myCld3d)
+  scene <- plot3dPdf(myCld3d,3)
   drawScene.rgl(scene)
 
   ### Export in '.azy' file

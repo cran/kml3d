@@ -10,7 +10,8 @@ export(
        ## kml3d
        "parKml3d","calculTrajMean3d","affectIndiv3d",
        #"kml3dSlow","kml3dFast","fastOrSlow3d",
-       "kml3d","choice"
+       "clusterLongData3d",
+       "kml3d","plotMeans3d"
        #alculCriterion","clustering",
 
        ## ListClustering
@@ -25,7 +26,7 @@ export(
        )
 
 exportMethods(
-              "clusterLongData3d","plot","plot3d","plot3dPdf"
+              "plot","plot3d","plotTraj3d","plotMeans3d","plot3dPdf"
               )
 
 exportClasses(
@@ -33,3 +34,6 @@ exportClasses(
               )
 
 import(methods,graphics,rgl,misc3d,longitudinalData,kml,clv)
+importFrom("grDevices", "dev.off")
+importFrom("stats", "dist", "na.omit", "rnorm", "runif")
+importFrom("utils", "write.csv2")

@@ -1,22 +1,21 @@
-\name{plot3d,ClusterLongData3d}
-\Rdversion{1.1}
-\alias{plot3d}
-%\alias{plot3d,ClusterLongData3d-method}
-\alias{plot3d,ClusterLongData3d,missing-method}
-\alias{plot3d,ClusterLongData3d,numeric-method}
-%\alias{plot3d,ClusterLongData3d,Partition-method}
+\name{plotTraj3d,ClusterLongData3d}
+\alias{plotTraj3d}
+%\alias{plotTraj3d,ClusterLongData3d-method}
+%\alias{plotTraj3d,ClusterLongData3d,missing-method}
+\alias{plotTraj3d,ClusterLongData3d,numeric-method}
+%\alias{plotTraj3d,ClusterLongData3d,Partition-method}
 
-\title{ ~ Function: plot3d for ClusterLongData3d ~ }
+\title{ ~ Function: plotTraj3d for ClusterLongData3d ~ }
 \description{
-  Plot two variables of a \code{\linkS4class{ClusterLongData3d}} object in 3D, optionnaly
+  Plot the trajectories of two variables of a \code{\linkS4class{ClusterLongData3d}} object in 3D
   relatively to a \code{\linkS4class{Partition}}.
 }
 
 \usage{
-%\S4method{plot3d}{ClusterLongData3d,missing}(x,y,varY=1,varZ=2,
+%\S4method{plotTraj3d}{ClusterLongData3d,missing}(x,y,varY=1,varZ=2,
 %   parTraj=parTRAJ(),parMean=parMEAN(),nbSample=200,...)
-\S4method{plot3d}{ClusterLongData3d,numeric}(x,y,varY=1,varZ=2,
-   parTraj=parTRAJ(),parMean=parMEAN(),...)
+\S4method{plotTraj3d}{ClusterLongData3d,numeric}(x,y,varY=1,varZ=2,
+   parTraj=parTRAJ(col="clusters"),parMean=parMEAN(type="n"),...)
 }
 
 \arguments{
@@ -26,9 +25,7 @@
     \code{c3}, ... \code{c26}. If \code{y=c(a,b)}, then \code{P} is
     the \code{Partition} number \code{b} with \code{a} clusters. If \code{y=a},
     then \code{P} is the partition number \code{1} with \code{a}
-    clusters. If \code{y} is missing, \code{P} is the \code{Partition}
-    with the best
-    criterion.}
+    clusters.}
   \item{varY}{\code{[numeric]} or \code{[character]}: either the
     number or the name of the first variable to display. 1 by default.}
   \item{varZ}{\code{[numeric]} or \code{[character]}: either the
@@ -47,7 +44,7 @@
 }
 
 \details{
-  Plot two variables of a \code{\linkS4class{ClusterLongData3d}} object in 3D. It
+  Plot the means trajectories of two variables of a \code{\linkS4class{ClusterLongData3d}} object in 3D. It
   use the \code{\link[rgl:rgl]{rgl}} library. The user can make the
   graphical representation turn using its mouse.
 }
@@ -66,20 +63,16 @@ g <- function(id,t)(id\%\%2+1)*t
 h <- function(id,t)(id\%\%4-0.5)*(20-t)
 myCld <- clusterLongData3d(array(cbind(outer(id2,time,f),outer(id2,time,g),
    outer(id2,time,h))+rnorm(120*8*3,0,3),dim=c(120,8,3)))
+kml3d(myCld,3:4,2)
 
 ### Basic plot
-plot(myCld,parTraj=parTRAJ(col=rep(1:6,20)))
+plotMeans3d(myCld,3)
 
-### plot3d, variable 1 and 2
-plot3d(myCld,parTraj=parTRAJ(col=rep(1:6,20)))
-
-### plot3d, variable 1 and 3
-plot3d(myCld,parTraj=parTRAJ(col=rep(1:6,20)),varZ=3)
-plot3d(myCld,parTraj=parTRAJ(col="red"))
-
+### plotTraj3d, variable 1 and 3
+plotMeans3d(myCld,4,varZ=3)
+plotMeans3d(myCld,3,parMean=parMEAN(col="red"))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{package}
 \keyword{ts}
 \keyword{aplot}

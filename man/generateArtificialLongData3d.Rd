@@ -101,9 +101,8 @@ generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
 ### Default example
 
 ex1 <- generateArtificialLongData3d()
-plot3d(ex1,parTraj=parTRAJ(type="l"))
-part1 <- partition(rep(1:3,each=50))
-plot3d(ex1,part1,parTraj=parTRAJ(type="l"))
+plot3d(ex1,parTraj=parTRAJ(col=rep(2:4,each=50)))
+
 
 #####################
 ### 4 lines with unbalanced groups
@@ -118,8 +117,8 @@ ex2 <- generateArtificialLongData3d(
   ),
   residualVariation = function(t){c(rnorm(1,0,1),rnorm(1,0,1))}
 )
-part2 <- partition(rep(1:4,time=c(5,10,20,40)))
-plot3d(ex2,part2)
+
+plot3d(ex2,parTraj=parTRAJ(col=rep(1:4,time=c(5,10,20,40))))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

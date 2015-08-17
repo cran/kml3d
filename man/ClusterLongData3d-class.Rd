@@ -1,9 +1,8 @@
 \name{ClusterLongData3d-class}
-\Rdversion{1.1}
 \docType{class}
 \alias{ClusterLongData3d-class}
 \alias{[,ClusterLongData3d-method}
-\alias{[,ClusterLongData3d,character-method}
+\alias{[,ClusterLongData3d,ANY,missing-method}
 \alias{[<-,ClusterLongData3d-method}
 \alias{[<-,ClusterLongData3d,character,missing,missing-method}
 \alias{show,ClusterLongData3d-method}

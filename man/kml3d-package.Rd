@@ -12,8 +12,8 @@
   \tabular{ll}{
     Package: \tab KmL3D\cr
     Type: \tab Package\cr
-    Version: \tab 2.3\cr
-    Date: \tab 2015-05-05\cr
+    Version: \tab 2.4\cr
+    Date: \tab 2015-08-06\cr
     License: \tab GPL (>= 2)\cr
     LazyData: \tab yes\cr
     Depends: \tab methods,graphics,rgl,misc3d,longitudinalData(>=2.2),KmL(>=2.2)\cr
@@ -126,10 +126,11 @@
 }
 
 \examples{
+\donttest{
 ### 1. Data Preparation
 data(pregnandiol)
 names(pregnandiol)
-cld3dPregTemp <- cld3d(pregnandiol,timeInData=list(preg=1:30*2+1,temp=1:30*2))
+cld3dPregTemp <- cld3d(pregnandiol,timeInData=list(temp=1:30*2,preg=1:30*2+1))
 
 ### 2. Building "optimal" clusteration (with only 2 redrawings)
 ###    Real analysis needs at least 20 redrawings
@@ -139,7 +140,8 @@ kml3d(cld3dPregTemp,3:5,nbRedrawing=2,toPlot="both")
 try(choice(cld3dPregTemp))
 
 ### 4. Visualizing in 3D
-plot3d(cld3dPregTemp,4,parTraj=parTRAJ(type="n"))
+plotMeans3d(cld3dPregTemp,4)
+}
 }
 
 \keyword{package}  % Package Summaries

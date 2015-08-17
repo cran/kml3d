@@ -55,7 +55,6 @@ affectIndiv3d <- function(traj,clustersCenter,distance=dist3d){
 }
 
 
-
 kml3dSlow <- function(traj,clusterAffectation,toPlot="traj",parAlgo=parKml3d()){
 #    if (distance %in% METHODS){distanceFun <- function(x,y){return(dist(t(cbind(x,y)),method=distance))}}else{distanceFun <- distance}
  #   print(distanceFun)
@@ -65,13 +64,13 @@ kml3dSlow <- function(traj,clusterAffectation,toPlot="traj",parAlgo=parKml3d()){
 
     exClusterAffectation <- partition()
     if(toPlot%in%c("traj","both")){
-        plotTraj(longDat3dTraj,partition(clusterAffectation))
+        ClusterLongData3d_plotTrajMeans(longDat3dTraj,partition(clusterAffectation),parWin=windowsCut(dim(traj)[3],TRUE,TRUE))
     }else{}
     for(iterations in 1:parAlgo['maxIt']){
         clustersCenter <- calculTrajMean3d(traj=traj,clust=clusterAffectation,centerMethod=kmlCenterMethod)
         clusterAffectation <- affectIndiv3d(traj=traj,clustersCenter=clustersCenter,distance=kmlDistance)
         if(toPlot%in%c("traj","both")){
-            plotTraj(longDat3dTraj,partition(clusterAffectation))
+            ClusterLongData3d_plotTrajMeans(longDat3dTraj,partition(clusterAffectation),parWin=windowsCut(dim(traj)[3],TRUE,TRUE))
         }else{}
         if(identical(clusterAffectation,exClusterAffectation)){
             clusterAffectation <- partition(clusterAffectation,longDat3dTraj,
@@ -83,8 +82,6 @@ kml3dSlow <- function(traj,clusterAffectation,toPlot="traj",parAlgo=parKml3d()){
     }
     return(partition(clusterAffectation,longDat3dTraj,details=c(convergenceTime=as.character(Inf),algorithm="kmeans 3d, slow (R)",multiplicity="1")))
 }
-
-
 
 
 kml3dFast <- function(traj,clusterAffectation){
@@ -105,6 +102,7 @@ fastOrSlow3d <- function(toPlot,distName){
     return(fast)
 }
 
+
 kml3d <- function(object,nbClusters=2:6,nbRedrawing=20,toPlot="none",parAlgo=parKml3d()){
     if(class(object)=="ClusterLongData"){
         stop("[kml3d]: kml3d is for joint longitudinal data (object 'ClusterLongData3d').
@@ -112,9 +110,9 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     }else{}
 
     nameObject<-deparse(substitute(object))
+    on.exit(if(toPlot!="none"){close.screen(listScreen)}else{})
 
     if(parAlgo["scale"]){scale(object)}else{}
-    on.exit(if(toPlot!="none"){close.screen(listScreen)}else{})
 
     nbIdFewNA <- object["nbIdFewNA"]
     convergenceTime <- 0
@@ -134,12 +132,10 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     ## Starting conditions
     startingCond <- expandStartingCond(parAlgo['startingCond'],nbRedrawing,object["initializationMethod"])
     object["initializationMethod"] <- unique(c(object["initializationMethod"],startingCond))
-#    if("maxDist" %in% startingCond){matDistance <- as.matrix(dist["traj"])}else{}
 
     ################
     ## Fast or Slow, according to distance and to toPlot
     fast <- fastOrSlow3d(toPlot,parAlgo['distanceName'])
-#    fast <- FALSE
 
     for(iRedraw in 1:nbRedrawing){
         for(iNbClusters in nbClusters){
@@ -148,30 +144,23 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
             clust <- rep(NA,nbIdFewNA)
             if(fast){
                 resultKml <- kml3dFast(traj=traj,clusterAffectation=clustersInit)
- #               resultKml <- .C("kml",as.double(t(trajNoNA)),iNbInd=as.integer(nbId),iNbTime=as.integer(nbTime),
-  #                              iNbCluster=as.integer(iNbClusters),maxIt=as.integer(maxIt),
-   #                             distance=as.integer(distInt),power=as.numeric(power),vClusterAffectation1=as.integer(clustersInit["clusters"]),
-    #                            convergenceTime=as.integer(convergenceTime),
-     #                           NAOK=TRUE,PACKAGE="kml")[c(8,9)]
-      #          clust[noNA] <- resultKml[[1]]
             }else{
                 if(toPlot%in%c("both","traj")){screen(listScreen[1])}else{}
                 resultKml <- kml3dSlow(traj=traj,clusterAffectation=clustersInit,toPlot=toPlot,parAlgo=parAlgo)
-                ## clust <- resultKml[[1]]["clusters"]
             }
 
             ## A priori, une partition avec un seul cluster peut maintenant exister...
-            ## if(resultKml['nbClusters']>1){
             object["add"] <- resultKml
-            ## }else{}
 
             assign(nameObject,object,envir=parent.frame())
-            cat("*")
             if(saveCld>=parAlgo['saveFreq']){
                 save(list=nameObject,file=paste(nameObject,".Rdata",sep=""))
-                saveCld <- 0
-                cat("\n")
-            }else{}
+                cat("S")
+            }else{
+                cat("*")
+            }
+            if(saveCld%%100==0){cat("\n")}else{}
+
             if(toPlot=="both"){
                 screen(listScreen[2])
                 plotCriterion(as(object,"ListPartition"),nbCriterion=parAlgo['nbCriterion'])
@@ -183,8 +172,6 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
         }
     }
 
-    cat("\n")
-    print(nameObject)
     cat("\n")
     if(saveCld<Inf){save(list=nameObject,file=paste(nameObject,".Rdata",sep=""))}else{}
     ## La fenetre graphique est fermée grace a 'on.exit' défini en début de fonction
@@ -202,7 +189,7 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     return(invisible())
 }
 
-.exportPartition3d <- function(object,nbClusters,rank,nameObject,typeGraph="bmp",parTraj=parTRAJ(),parMean=parMEAN()){
+ClusterLongData3d_exportPartition3d <- function(object,nbClusters,rank,nameObject,typeGraph="bmp",parTraj=parTRAJ(),parMean=parMEAN()){
     #                           parWin=windowsCut(1)){
 #    col="clusters",type="l",
 #    col.mean="clusters",type.mean="b",main="",cex=1,
@@ -231,15 +218,15 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     #    savePlot(filename=paste(nameObject,"-Traj",sep=""),type=typeGraph)
     return(invisible())
 }
-setMethod("exportPartition",signature=c("ClusterLongData3d","numeric"),.exportPartition3d)
+setMethod("exportPartition",signature=c("ClusterLongData3d","numeric"),ClusterLongData3d_exportPartition3d)
 
 
 
-setMethod("choice",signature=c("ClusterLongData3d"),.clusterLongData.choice)
+#setMethod("choice",signature=c("ClusterLongData3d"),ClusterLongData_choice)
 
 
 
 cat("\n-------------------------------------------------------------------
-------------------------------- kml -------------------------------
+------------------------------ kml3d ------------------------------
 ------------------------------- Fin -------------------------------
 -------------------------------------------------------------------\n")

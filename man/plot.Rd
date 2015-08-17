@@ -1,10 +1,10 @@
 \name{plot,ClusterLongData3d}
 \alias{plot}
 \alias{plot,ClusterLongData3d}
-\alias{plot,ClusterLongData3d,method}
+%\alias{plot,ClusterLongData3d,method}
 \alias{plot,ClusterLongData3d,missing-method}
 \alias{plot,ClusterLongData3d,numeric-method}
-\alias{plot,ClusterLongData3d,Partition-method}
+%\alias{plot,ClusterLongData3d,Partition-method}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ ~ Function: plot for ClusterLongData3d ~ }
@@ -14,8 +14,9 @@
   \code{\linkS4class{Partition}}. One graphe for each variable is displayed.
 }
 \usage{
-\S4method{plot}{ClusterLongData3d,numeric}(x,y,parTraj=parTRAJ(),parMean=parMEAN(),
-   parWin=windowsCut(x['nbVar']),nbSample=200,toPlot=c("both"),nbCriterion=100,...)
+\S4method{plot}{ClusterLongData3d,numeric}(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),
+   parWin=windowsCut(x['nbVar']),toPlot=c("both"),nbCriterion=100,
+   xlab="Times", ylab=x["varNames"],...)
 
 %,toPlot=c("both"),criterion=x["criterionActif"],nbCriterion=100,standardized = FALSE)
 }
@@ -46,9 +47,9 @@
   \item{parWin}{\code{[parWindin]}: Set the graphical display of
     the windows. See \code{\linkS4class{ParWindows}} for details.}
 
-  \item{nbSample}{\code{[numeric]}: Graphical display of huge sample can
-    be time consumming. This parameters fixe the maximum number of
-    trajectories (randomly chosen) that will be drawn.}
+%  \item{nbSample}{\code{[numeric]}: Graphical display of huge sample can
+%    be time consumming. This parameters fixe the maximum number of
+%    trajectories (randomly chosen) that will be drawn.}
 
   \item{toPlot}{\code{[character]}: either 'traj' for plotting
     trajectories alone, 'criterion' for plotting criterion alone,
@@ -58,6 +59,10 @@
     \code{criterion} (and thus is displayed for 'all' the
     \code{Partition}), this slot alows to fix a limit on the number of
     points that will be display.}
+
+  \item{xlab}{\code{[character]}: label of the x axe}
+  \item{ylab}{\code{[vector(character)]}: labels of the y axe, one for
+    each variables.}
 
   \item{...}{Arguments to be passed to methods, such as graphical parameters.}
 }
@@ -91,35 +96,34 @@
 ### Construction of the data
 
 myCld <- gald3d()
-part <- partition(rep(1:3,each=50))
 
 ### Basic plotting
 plot(myCld)
-plot(myCld,part)
-
 
 ##################
 ### Changing graphical parameters 'par'
 
 ### No letters on the mean trajectories
-plot(myCld,part,parMean=parMEAN(type="l"))
+kml3d(myCld,2:7,2)
+plot(myCld,2,parMean=parMEAN(type="l"))
 
 ### Only one letter on the mean trajectories
-plot(myCld,part,parMean=parMEAN(pchPeriod=Inf))
+plot(myCld,3,parMean=parMEAN(pchPeriod=Inf))
 
 ### Color individual according to its clusters (col="clusters")
-plot(myCld,part,parTraj=parTRAJ(col="clusters"))
+plot(myCld,4,parTraj=parTRAJ(col="clusters"))
 
 ### Mean without individual
-plot(myCld,part,parTraj=parTRAJ(type="n"))
+plot(myCld,5,parTraj=parTRAJ(type="n"))
 
 
 ### No mean trajectories (type="n")
 ### Color individual according to its clusters (col="clusters")
-plot(myCld,part,parTraj=parTRAJ(col="clusters"),parMean=parMEAN(type="n"))
+plot(myCld,6,parTraj=parTRAJ(col="clusters"),parMean=parMEAN(type="n"))
 
 ### Only few trajectories
-plot(myCld,part,nbSample=10,parTraj=parTRAJ(col='clusters'),parMean=parMEAN(type="n"))
+plot(myCld,7,nbSample=10,parTraj=parTRAJ(col='clusters'),parMean=parMEAN(type="n"))
+
 }
 
 \keyword{dplot}    % Computations Related to Plotting

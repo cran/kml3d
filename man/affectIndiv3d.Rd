@@ -58,12 +58,12 @@ part <- affectIndiv3d(traj,center)
 
 
 #################
-### K-means simulation (4 steps)
-plot(clusterLongData3d(traj),partition(part))
-for (i in 1:4){
+### K-means simulation (3 steps)
+plot(clusterLongData3d(traj),parTraj=parTRAJ(col=part+1))
+for (i in 1:3){
     center <- calculTrajMean3d(traj,part)
     part <- affectIndiv3d(traj,center)
-    plot(clusterLongData3d(traj),partition(part))
+    plot(clusterLongData3d(traj),parTraj=parTRAJ(col=part+1))
 }
 }
 
