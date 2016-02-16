@@ -59,18 +59,20 @@ kml3dSlow <- function(traj,clusterAffectation,toPlot="traj",parAlgo=parKml3d()){
 #    if (distance %in% METHODS){distanceFun <- function(x,y){return(dist(t(cbind(x,y)),method=distance))}}else{distanceFun <- distance}
  #   print(distanceFun)
     longDat3dTraj <- longData3d(traj,maxNA=ncol(traj)-1)
-    kmlCenterMethod=parAlgo['centerMethod']
-    kmlDistance=parAlgo['distance']
+    kmlCenterMethod <- parAlgo['centerMethod']
+    kmlDistance <- parAlgo['distance']
 
     exClusterAffectation <- partition()
     if(toPlot%in%c("traj","both")){
-        ClusterLongData3d_plotTrajMeans(longDat3dTraj,partition(clusterAffectation),parWin=windowsCut(dim(traj)[3],TRUE,TRUE))
+        screens <- ClusterLongData3d_plotTrajMeans(longDat3dTraj,partition(clusterAffectation),addLegend=TRUE)
+        close.screen(screens)
     }else{}
     for(iterations in 1:parAlgo['maxIt']){
         clustersCenter <- calculTrajMean3d(traj=traj,clust=clusterAffectation,centerMethod=kmlCenterMethod)
         clusterAffectation <- affectIndiv3d(traj=traj,clustersCenter=clustersCenter,distance=kmlDistance)
         if(toPlot%in%c("traj","both")){
-            ClusterLongData3d_plotTrajMeans(longDat3dTraj,partition(clusterAffectation),parWin=windowsCut(dim(traj)[3],TRUE,TRUE))
+           screens <- ClusterLongData3d_plotTrajMeans(longDat3dTraj,partition(clusterAffectation),addLegend=TRUE)
+           close.screen(screens)
         }else{}
         if(identical(clusterAffectation,exClusterAffectation)){
             clusterAffectation <- partition(clusterAffectation,longDat3dTraj,
@@ -153,9 +155,9 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
             object["add"] <- resultKml
 
             assign(nameObject,object,envir=parent.frame())
-            if(saveCld>=parAlgo['saveFreq']){
+            if(saveCld%%parAlgo['saveFreq']==0){
                 save(list=nameObject,file=paste(nameObject,".Rdata",sep=""))
-                cat("S")
+                cat("S\n",saveCld," ",sep="")
             }else{
                 cat("*")
             }
@@ -173,9 +175,15 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     }
 
     cat("\n")
-    if(saveCld<Inf){save(list=nameObject,file=paste(nameObject,".Rdata",sep=""))}else{}
-    ## La fenetre graphique est fermée grace a 'on.exit' défini en début de fonction
     ordered(object)
+
+    if(saveCld<Inf){
+        save(list=nameObject,file=paste(nameObject,".Rdata",sep=""))
+        cat("S\n")
+    }else{
+        cat("\n")
+    }
+    ## La fenetre graphique est fermée grace a 'on.exit' défini en début de fonction
     if(toPlot=="both"){
         screen(listScreen[2])
         plotCriterion(as(object,"ListPartition"),nbCriterion=parAlgo['nbCriterion'])

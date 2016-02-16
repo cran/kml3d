@@ -1,7 +1,7 @@
 \name{plot,ClusterLongData3d}
 \alias{plot}
 \alias{plot,ClusterLongData3d}
-%\alias{plot,ClusterLongData3d,method}
+\alias{plot,ClusterLongData3d,ANY-method}
 \alias{plot,ClusterLongData3d,missing-method}
 \alias{plot,ClusterLongData3d,numeric-method}
 %\alias{plot,ClusterLongData3d,Partition-method}
@@ -14,9 +14,8 @@
   \code{\linkS4class{Partition}}. One graphe for each variable is displayed.
 }
 \usage{
-\S4method{plot}{ClusterLongData3d,numeric}(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),
-   parWin=windowsCut(x['nbVar']),toPlot=c("both"),nbCriterion=100,
-   xlab="Times", ylab=x["varNames"],...)
+\S4method{plot}{ClusterLongData3d,ANY}(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),
+   addLegend=TRUE,adjustLegend=-0.05,toPlot="both",nbCriterion=1000,...)
 
 %,toPlot=c("both"),criterion=x["criterionActif"],nbCriterion=100,standardized = FALSE)
 }
@@ -44,8 +43,8 @@
     'type','col','pch','pchPeriod' and 'cex'. See
     \code{\linkS4class{ParLongData}} for details.}
 
-  \item{parWin}{\code{[parWindin]}: Set the graphical display of
-    the windows. See \code{\linkS4class{ParWindows}} for details.}
+%  \item{parWin}{\code{[parWindin]}: Set the graphical display of
+%    the windows. See \code{\linkS4class{ParWindows}} for details.}
 
 %  \item{nbSample}{\code{[numeric]}: Graphical display of huge sample can
 %    be time consumming. This parameters fixe the maximum number of
@@ -60,11 +59,18 @@
     \code{Partition}), this slot alows to fix a limit on the number of
     points that will be display.}
 
-  \item{xlab}{\code{[character]}: label of the x axe}
-  \item{ylab}{\code{[vector(character)]}: labels of the y axe, one for
-    each variables.}
+  \item{addLegend}{\code{[logical]}: should the legend be displayed?}
 
-  \item{...}{Arguments to be passed to methods, such as graphical parameters.}
+  \item{adjustLegend}{\code{[numeric]}: fix the hight of the legend}
+
+  \item{...}{Some other parameters can be passed to the method (like
+    "xlab" or "ylab".}
+
+%  \item{xlab}{\code{[character]}: label of the x axe}
+%  \item{ylab}{\code{[vector(character)]}: labels of the y axe, one for
+ %   each variables.}
+
+  %\item{...}{Arguments to be passed to methods, such as graphical parameters.}
 }
 
 \details{

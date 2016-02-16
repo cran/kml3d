@@ -199,10 +199,17 @@ cat("
 detectGlobal(ClusterLongData3d_num_plot3d)
 detectGlobal(ClusterLongData3d_missingY_plot3d)
 ClusterLongData3d_plotTrajMeans(CLD7,2)
+close.screen(1:3)
+ClusterLongData3d_plotTrajMeans(CLD7,2,ajustLegend=-0.2)
+close.screen(1:3)
 ClusterLongData3d_plotTrajMeans(CLD7,c(3,1))
+close.screen(1:3)
 ClusterLongData3d_plotTrajMeans(CLD7,c(2,1))
+close.screen(1:3)
 ClusterLongData3d_plotTrajMeans(CLD7,c(3,1),parMean=parMEAN(type="n"))
+close.screen(1:3)
 ClusterLongData3d_plotTrajMeans(CLD7,c(3,2))
+close.screen(1:3)
 
 detectGlobal(ClusterLongData3d_plotTrajMeans,1)
 ClusterLongData3d_plot(CLD7,3)
@@ -212,10 +219,11 @@ ClusterLongData3d_plot(CLD7,c(3,1))
 ClusterLongData3d_plot(CLD3,c(3,2))
 
 
+
 detectGlobal(ClusterLongData3d_plotTrajMeans,1)
 plot(CLD3)
 plot(CLD7,c(4,1))
-plot(CLD7,c(3,1))
+plot(CLD7,c(3,1),ajustLegend=-0.2)
 plot(CLD3,c(3,2))
 plot(CLD7,c(4,1),toPlot="traj")
 plot(CLD7,c(3,1),toPlot="criterion")
@@ -223,12 +231,12 @@ plot(CLD3,c(3,2),toPlot="both")
 
 
 detectGlobal(ClusterLongData3d_plotTraj,1)
-plotTraj(CLD7,c(4,1))
+plotTraj(CLD7,c(4,1),ajustLegend=-0.2)
 plotTraj(CLD7,c(3,1))
 plotTraj(CLD3,c(3,2))
 
 detectGlobal(ClusterLongData3d_plotTraj,1)
-plotMeans(CLD7,c(4,1))
+plotMeans(CLD7,c(4,1),ajustLegend=-0.2)
 plotMeans(CLD7,c(3,1))
 plotMeans(CLD3,c(3,2))
 

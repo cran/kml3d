@@ -10,7 +10,8 @@ export(
        ## kml3d
        "parKml3d","calculTrajMean3d","affectIndiv3d",
        #"kml3dSlow","kml3dFast","fastOrSlow3d",
-       "clusterLongData3d",
+    "clusterLongData3d",
+    "plot","plot3d","plotTraj3d","plotMeans3d","plot3dPdf",
        "kml3d","plotMeans3d"
        #alculCriterion","clustering",
 
@@ -25,9 +26,9 @@ export(
     #   "affectIndiv"
        )
 
-exportMethods(
-              "plot","plot3d","plotTraj3d","plotMeans3d","plot3dPdf"
-              )
+#exportMethods(
+ #
+  #            )
 
 exportClasses(
               "ClusterLongData3d"

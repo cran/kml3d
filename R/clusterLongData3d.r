@@ -226,18 +226,18 @@ cat("
  ################################ plot ###############################
 #####################################################################")
 
-### On a un cld3d et un num, on plot le longData3d et la Partition qui va avec.
-ClusterLongData3d_plotTrajMeans <- function(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar'],addLegend=FALSE),xlab="Times",ylab=x["varNames"],...){
+### On a un cld3d et un num, on plot le longData3d et la Partition qui va avec. On ne ferme pas le screen.
+ClusterLongData3d_plotTrajMeans <- function(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),xlab="Times",ylab=x["varNames"],addLegend=TRUE,adjustLegend=-0.12,...){
     ## ############################# Preparation ############################# ##
     nbVar <- x['nbVar']
     nbTime <- x['nbTime']
     traj <- x['traj']
+    parWin <- windowsCut(x['nbVar'],addLegend=addLegend)
 
     ## Gestion de la partition
 
      if(is.numeric(y)){
         if(length(y)==1){y<-c(y,1)}else{}
-        nbClusters <- y[1]
         y <- x[paste('c',y[1],sep="")][[y[2]]]
     }else{}
 
@@ -250,51 +250,54 @@ ClusterLongData3d_plotTrajMeans <- function(x,y=NA,parTraj=parTRAJ(),parMean=par
         plotTrajMeans(longDataFrom3d(x,i),y,parTraj=parTraj,parMean=parMean,xlab=xlab,ylab=ylab[i],...)
 
     }
-    if(parWin['addLegend']){
+    if(addLegend){
         screen(listScreen[length(listScreen)],FALSE)
         part <- factor(y['clusters'],levels=LETTERS[1:y['nbClusters']])
-        plotLegend(as.numeric(table(part)/length(part)*100),parMean=parMean)
+        plotLegend(as.numeric(table(part)/length(part)*100),parMean=parMean,adjustLegend=adjustLegend)
     }
 
-    if(parWin['closeScreen']){ close.screen(listScreen) }else{}
     return(listScreen)
 }
 
 
 ##setMethod("plot",signature=c("ClusterLongData3d","missing"),.clusterLongData3d.plot)
-ClusterLongData3d_plot <- function(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),toPlot=c("both"),nbCriterion=100,xlab="Times",ylab=x["varNames"],...){
+ClusterLongData3d_plot <- function(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),addLegend=TRUE,adjustLegend=-0.05,
+    toPlot="both",nbCriterion=1000,xlab="Times",ylab=x["varNames"],closeScreenTraj=TRUE,...){
     if(any(is.na(y))){
        toPlot <- "traj"
-       parWin <- windowsCut(x['nbVar'],addLegend=FALSE)
+       addLegend <- FALSE
     }else{}
     switch(EXPR=toPlot,
            "both"={
                listScreen <- split.screen(matrix(c(0,0.3,0.3,1,0,0,1,1),2))
                screen(listScreen[2])
-               parSubWindows <- parWin
-               parSubWindows['closeScreen']<-TRUE
-               ClusterLongData3d_plotTrajMeans(x,y,parTraj=parTraj,parMean=parMean,parWin=parSubWindows,xlab=xlab,ylab=ylab,...)
+               ClusterLongData3d_plotTrajMeans(x,y,parTraj=parTraj,parMean=parMean,addLegend=addLegend,adjustLegend=adjustLegend,xlab=xlab,ylab=ylab,...)
                screen(listScreen[1])
                plotCriterion(as(x,"ListPartition"),criterion=x["criterionActif"],nbCriterion=nbCriterion)
 
-               if(parWin['closeScreen']){
-                   close.screen(listScreen)
-                   return(invisible())
-               }else{
-                   return(listScreen)
-               }
            },
            "traj"={
-               ClusterLongData3d_plotTrajMeans(x,y=y,parTraj=parTraj,parMean=parMean,parWin=parWin,xlab=xlab,ylab=ylab,...)
+               ClusterLongData3d_plotTrajMeans(x,y=y,parTraj=parTraj,parMean=parMean,addLegend=addLegend,adjustLegend=adjustLegend,xlab=xlab,ylab=ylab,...)
            },
            "criterion"={
                plotCriterion(as(x,"ListPartition"),criterion=x['criterionActif'],nbCriterion=nbCriterion)
            }
-    )
+
+
+     )
+    if(closeScreenTraj){
+        close.screen(all.screens = TRUE)
+        return(invisible())
+    }else{
+        return(listScreen)
+    }
 }
 
-ClusterLongData3d_missing_plot <- function(x,y,parTraj=parTRAJ(),parMean=parMEAN(),parWin=windowsCut(x['nbVar']),toPlot="both",nbCriterion=100,xlab="Times",ylab=x["varNames"],...){
-     ClusterLongData3d_plot(x=x,y=NA,parTraj=parTraj,parMean=parMean,parWin=parWin,toPlot=toPlot,nbCriterion=nbCriterion,xlab=xlab,ylab=ylab,...)
+
+
+
+ClusterLongData3d_missing_plot <- function(x,y,parTraj=parTRAJ(),parMean=parMEAN(),toPlot="both",nbCriterion=1000,xlab="Times",ylab=x["varNames"],...){
+     ClusterLongData3d_plot(x=x,y=NA,parTraj=parTraj,parMean=parMean,toPlot=toPlot,nbCriterion=nbCriterion,xlab=xlab,ylab=ylab,closeScreenTraj=TRUE,...)
 }
 
 setMethod("plot",signature=c("ClusterLongData3d","numeric"),ClusterLongData3d_plot)
@@ -335,7 +338,7 @@ gald3d <- generateArtificialLongData3d <- function(
     idAll <- paste("i",1:(sum(nbEachClusters)),sep="")
     indivInCluster <- rep(1:nbClusters,times=nbEachClusters)
 
-    traj <- array(NA,dim=c(sum(nbEachClusters),nbTime,nbVar),dimnames=c(idAll,paste("t",time,sep=""),varNames))
+    traj <- array(NA,dim=c(sum(nbEachClusters),nbTime,nbVar),dimnames=list(idAll,paste("t",time,sep=""),varNames))
     for (iIndiv in 1:nrow(traj)){
         traj[iIndiv,,] <- t(sapply(time,meanTrajectories[[indivInCluster[iIndiv]]])+personalVariation[[indivInCluster[iIndiv]]](0)+sapply(time,residualVariation[[indivInCluster[iIndiv]]]))
     }
