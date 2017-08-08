@@ -56,7 +56,7 @@
 
 
 \examples{
-##################
+\donttest{##################
 ### Real example on array
 
 time=c(1,2,3,4,8,12,16,20)
@@ -76,7 +76,7 @@ plot3d(myCld,parTraj=parTRAJ(col=rep(1:6,20)))
 ### plot3d, variable 1 and 3
 plot3d(myCld,parTraj=parTRAJ(col=rep(1:6,20)),varZ=3)
 plot3d(myCld,parTraj=parTRAJ(col="red"))
-
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
