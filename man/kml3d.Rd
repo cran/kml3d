@@ -113,6 +113,10 @@ kml3d(object, nbClusters = 2:6, nbRedrawing = 20, toPlot = "none",
 
 \examples{
 \donttest{
+### Move to tempdir
+wd <- getwd()
+setwd(tempdir()); getwd()
+  
 ### Generation of some data
 cld1 <- generateArtificialLongData3d(15)
 
@@ -124,6 +128,9 @@ kml3d(cld1,2:5,3,toPlot="both")
 ###   We don't want to see again, we want to get the result as fast as possible.
 ###   Just, to check the overall process, we plot the criterion evolution
 kml3d(cld1,3,10,toPlot="criterion")
+
+### Go back to current dir
+setwd(wd)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -106,7 +106,7 @@ fastOrSlow3d <- function(toPlot,distName){
 
 
 kml3d <- function(object,nbClusters=2:6,nbRedrawing=20,toPlot="none",parAlgo=parKml3d()){
-    if(class(object)=="ClusterLongData"){
+    if(inherits(object,"ClusterLongData")){
         stop("[kml3d]: kml3d is for joint longitudinal data (object 'ClusterLongData3d').
 For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     }else{}

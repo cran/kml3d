@@ -62,7 +62,7 @@
 
 \references{Article "KmL: K-means for Longitudinal Data", in
   Computational Statistics, Volume 25, Issue 2 (2010), Page 317. \cr
-  Web site: \url{http://christophe.genolini.free.fr/kml}
+  Web site: \url{http://christophe.genolini.free.fr/kml/}
 }
 
 \section{Author(s)}{
@@ -75,6 +75,10 @@
 
 
 \examples{
+  ### Move to tempdir
+  wd <- getwd()
+  setwd(tempdir()); getwd()
+  
   ### Generating the data
   myCld3d <- gald3d(c(5,5,5))
   kml3d(myCld3d,3:4,1)
@@ -96,4 +100,7 @@
   ### Creation of the '.pdf'
   # Open a console window, then run
   # pdfLatex main.tex
+  
+  ### Go back to current dir
+  setwd(wd)
 }

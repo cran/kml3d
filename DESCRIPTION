@@ -1,10 +1,11 @@
 Package: kml3d
 Type: Package
 Title: K-Means for Joint Longitudinal Data
-Version: 2.4.2
-Date: 2017-08-01
+Version: 2.4.6
+Date: 2023-02-11
 Authors@R: c(person("Christophe","Genolini",role=c("cre","aut"),email="christophe.genolini@u-paris10.fr"),
     person("Bruno","Falissard",role=c("ctb")),
+    person("Patrice","Kiener",role=c("ctb")),
     person("Jean-Baptiste","Pingault",role=c("ctb")))
 Description: An implementation of k-means specifically design
         to cluster joint trajectories (longitudinal data on
@@ -19,14 +20,15 @@ License: GPL (>= 2)
 LazyData: yes
 URL: http:www.r-project.org
 Collate: global.r distance3d.r clusterLongData3d.r kml3d.r
-Depends: methods,clv,rgl,misc3d,longitudinalData(>= 2.4.1), kml(>=
+Depends: methods,clv,rgl,misc3d,longitudinalData(>= 2.4.2), kml(>=
         2.4.1)
 Encoding: latin1
 NeedsCompilation: no
-Packaged: 2017-07-31 10:29:38 UTC; Genolini
+Packaged: 2023-02-11 12:37:51 UTC; Patrice
 Author: Christophe Genolini [cre, aut],
   Bruno Falissard [ctb],
+  Patrice Kiener [ctb],
   Jean-Baptiste Pingault [ctb]
 Maintainer: Christophe Genolini <christophe.genolini@u-paris10.fr>
 Repository: CRAN
-Date/Publication: 2017-08-08 07:31:57 UTC
+Date/Publication: 2023-02-12 13:42:06 UTC

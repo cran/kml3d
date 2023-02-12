@@ -103,6 +103,10 @@
 }
 
 \examples{
+### Move to tempdir
+wd <- getwd()
+setwd(tempdir()); getwd()
+
 ### Building longData
 traj <- array(c(1,2,3,1,4, 3,6,1,8,10, 1,2,1,3,2, 4,2,5,6,3, 4,3,4,4,4, 7,6,5,5,4),
             dim=c(3,5,2))
@@ -127,5 +131,7 @@ myCld['criterionActif']<-"Davies.Bouldin"
 ### Plot
 plot(myCld)
 
+### Go back to current dir
+setwd(wd)
 }
 \keyword{classes}

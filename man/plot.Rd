@@ -97,7 +97,11 @@
   Plot : \code{\link{plotTraj}}, \code{\link{plotCriterion}}
 }
 
-  \examples{
+\examples{
+### Move to tempdir
+wd <- getwd()
+setwd(tempdir()); getwd()
+
 ##################
 ### Construction of the data
 
@@ -130,6 +134,8 @@ plot(myCld,6,parTraj=parTRAJ(col="clusters"),parMean=parMEAN(type="n"))
 ### Only few trajectories
 plot(myCld,7,nbSample=10,parTraj=parTRAJ(col='clusters'),parMean=parMEAN(type="n"))
 
+### Go back to current dir
+setwd(wd)
 }
 
 \keyword{dplot}    % Computations Related to Plotting

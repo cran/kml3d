@@ -32,6 +32,10 @@ A numeric
 }
 
 \examples{
+  ### Move to tempdir
+  wd <- getwd()
+  setwd(tempdir()); getwd()
+
   ### Generate artificial data
   myCld <- gald3d()
 
@@ -40,4 +44,7 @@ A numeric
 
   ### Distance between individual 1 and 51 (there are in two different groups)
   dist3d(myCld['traj'][1,,],myCld['traj'][51,,])
+  
+  ### Go back to current dir
+  setwd(wd)
 }

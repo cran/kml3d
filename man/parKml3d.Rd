@@ -85,6 +85,10 @@ parKml3d(saveFreq = 100, maxIt = 200, imputationMethod = "copyMean",
 
 
 \examples{
+### Move to tempdir
+wd <- getwd()
+setwd(tempdir()); getwd()
+
 ### Generation of some data
 cld1 <- generateArtificialLongData3d(c(15,15,15))
 
@@ -95,4 +99,7 @@ cld1 <- generateArtificialLongData3d(c(15,15,15))
 ### Running kml. Formaly, the second exemple is 'k-median'
 kml3d(cld1,4,1,toPlot="both",parAlgo=option1)
 kml3d(cld1,4,1,toPlot="both",parAlgo=option2)
+
+### Go back to current dir
+setwd(wd)
 }

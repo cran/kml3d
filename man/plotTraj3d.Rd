@@ -53,6 +53,10 @@
 
 
 \examples{
+### Move to tempdir
+wd <- getwd()
+setwd(tempdir()); getwd()
+
 ##################
 ### Real example on array
 
@@ -71,6 +75,9 @@ plotMeans3d(myCld,3)
 ### plotTraj3d, variable 1 and 3
 plotMeans3d(myCld,4,varZ=3)
 plotMeans3d(myCld,3,parMean=parMEAN(col="red"))
+
+### Go back to current dir
+setwd(wd)
 }
 
 \keyword{package}

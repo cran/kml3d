@@ -127,6 +127,10 @@
 
 \examples{
 \donttest{
+### Move to tempdir
+wd <- getwd()
+setwd(tempdir()); getwd()
+
 ### 1. Data Preparation
 data(pregnandiol)
 names(pregnandiol)
@@ -141,6 +145,9 @@ try(choice(cld3dPregTemp))
 
 ### 4. Visualizing in 3D
 plotMeans3d(cld3dPregTemp,4)
+
+### Go back to current dir
+setwd(wd)
 }
 }
 
