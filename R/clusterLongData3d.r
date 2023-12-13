@@ -1,4 +1,4 @@
-## clusterization est une partition associé a une longData, ou une clusterizLongData.
+## clusterization est une partition associÃ© a une longData, ou une clusterizLongData.
 ### cet objet ne devrait pouvoir exister que dans un cld
 
 
@@ -136,8 +136,8 @@ setMethod(
 
 
 cat("### Setteur ###\n")
-### Héritage direct de ListPartition puisque set n'est pas défini pour LongData
-### ATTENTION !!! Normalement, il faudrait vérifier que la partition est de la BONNE TAILLE !!!
+### HÃ©ritage direct de ListPartition puisque set n'est pas dÃ©fini pour LongData
+### ATTENTION !!! Normalement, il faudrait vÃ©rifier que la partition est de la BONNE TAILLE !!!
 
 
 ClusterLongData3d_set <- function (x, i, j="missing", ..., value){

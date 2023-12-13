@@ -78,8 +78,8 @@ generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
 
 \section{Author}{
   Christophe Genolini\cr
-  1. UMR U1027, INSERM, Université Paul Sabatier / Toulouse III / France\cr
-  2. CeRSME, EA 2931, UFR STAPS, Université de Paris Ouest-Nanterre-La Défense / Nanterre / France
+  1. UMR U1027, INSERM, UniversitÃ© Paul Sabatier / Toulouse III / France\cr
+  2. CeRSME, EA 2931, UFR STAPS, UniversitÃ© de Paris Ouest-Nanterre-La DÃ©fense / Nanterre / France
 }
 
 \references{

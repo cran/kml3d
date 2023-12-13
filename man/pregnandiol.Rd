@@ -3,7 +3,7 @@
 \alias{pregnandiol}
 \docType{data}
 
-\title{~ Pregnandiol measure (from QUIDEL database, René Écochard) ~}
+\title{~ Pregnandiol measure (from QUIDEL database, RenÃ© Ã‰cochard) ~}
 
 \description{
   These longitudinal data are extract form the QUIDEL database whose aims is to
@@ -36,7 +36,7 @@ ovulation [eco06]. It involves 107 women and 283 cycles in all, with
 identification of the day of ovulation and daily titration of the levels
 of the four main hormones in the ovulation cycle. The database belongs
 to the laboratory in charge of the analysis of hormone trajectories
-(CNRS 5558, René Ecochard).
+(CNRS 5558, RenÃ© Ecochard).
 It has already been the subject of numerous
 publications, including [eco00, eco01].}
 

@@ -27,16 +27,16 @@ parKml3d <- function (saveFreq = 100, maxIt = 200, imputationMethod = "copyMean"
 #    return(trajMean)
 #}
 
-### ATTENTION : Ne fonctionne pas avec les partitions à un seul clusters
+### ATTENTION : Ne fonctionne pas avec les partitions Ã  un seul clusters
 calculTrajMean3d <- function(traj,clust,centerMethod=function(x){mean(x,na.rm=TRUE)}){
     trajMean <- apply(traj, c(2,3), tapply, clust, centerMethod)
     return(trajMean)
 }
 
-### CalculMean : même chose mais en C.
+### CalculMean : mÃªme chose mais en C.
 
 
-### On suppose que si un centre est NA, il est en dernière ligne de clustersCenter
+### On suppose que si un centre est NA, il est en derniÃ¨re ligne de clustersCenter
 affectIndiv3d <- function(traj,clustersCenter,distance=dist3d){
 #    if (distance %in% METHODS){distanceFun <- ,method=distance))}}else{distanceFun <- distance}
     nbId <- nrow(traj)
@@ -123,7 +123,7 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     saveCld <-0
 
     ################
-    ## listScreen[1] (à droite) est pour les traj.
+    ## listScreen[1] (Ã  droite) est pour les traj.
     listScreen <- cutScreen(toPlot)
     if(toPlot%in%c("both","criterion")){
         screen(listScreen[2])
@@ -183,7 +183,7 @@ For classic longitudinal data (object of class 'ClusterLongData'), use kml")
     }else{
         cat("\n")
     }
-    ## La fenetre graphique est fermée grace a 'on.exit' défini en début de fonction
+    ## La fenetre graphique est fermÃ©e grace a 'on.exit' dÃ©fini en dÃ©but de fonction
     if(toPlot=="both"){
         screen(listScreen[2])
         plotCriterion(as(object,"ListPartition"),nbCriterion=parAlgo['nbCriterion'])
