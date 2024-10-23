@@ -9,8 +9,9 @@
   ~ Function: plot3dPdf for ClusterLongData3d ~
 }
 \description{
-  Given a \code{\linkS4class{ClusterLongData3d}} and a \code{\linkS4class{Partition}}, this
-  function create Triangle objects representing the 3D plot of two
+  Given a \code{\linkS4class{ClusterLongData3d}} and a 
+  \code{Partition} (from package \code{longitudinalData}), this
+  function creates Triangle objects representing the 3D plot of two
   variables of the main trajectories.
 }
 \usage{
@@ -34,20 +35,22 @@
 }
 \details{
   Create Triangle objects representing the 3D plot of the main
-  trajectories of a \code{\linkS4class{ClusterLongData}}.
+  trajectories of a \code{ClusterLongData} (of package \code{longitudinalData}).
 
-  The three functions \code{\link{plot3dPdf}}, \code{\link{saveTrianglesAsASY}} and \code{\link{makeLatexFile}}
+  The three functions \code{\link{plot3dPdf}}, 
+  \code{\link[longitudinalData]{saveTrianglesAsASY}} 
+  and \code{\link[longitudinalData]{makeLatexFile}} 
   are design to export a 3D graph to a Pdf file. The process is the following:
 
   \enumerate{
     \item \code{\link{plot3dPdf}}: Create a scene, that is a collection of Triangle object that
     represent a 3D images.
-    \item \code{\link{saveTrianglesAsASY}}: Export the scene in an '.asy' file.
+    \item \code{\link[longitudinalData]{saveTrianglesAsASY}}: Export the scene in an '.asy' file.
     \item '.azy' can not be include in LaTeX file. LaTeX can read only '.pre' file. So the next step is to use
     \code{asymptote} to convert '.asy' tp '.pre'. This is done by the command \code{asy -inlineimage -tex pdflatex
       scene.azy}.
     \item The previous step did produce a file \code{scene+0.prc} that can be include in a LaTeX file.
-    \code{\link{makeLatexFile}} create a LaTeX file that is directly compilable (using \code{pdfLatex}).
+    \code{\link[longitudinalData]{makeLatexFile}} create a LaTeX file that is directly compilable (using \code{pdfLatex}).
     It produce a pdf file that contain the 3D object.
   }
 }
@@ -70,7 +73,7 @@
   INSERM U669 / PSIGIAM: Paris Sud Innovation Group in Adolescent Mental Health\cr
   Modal'X / Universite Paris Ouest-Nanterre- La Defense \cr\cr
 
-  Contact author : \email{genolini@u-paris10.fr}
+  Contact author : \email{christophe.genolini@free.fr}
 }
 
 

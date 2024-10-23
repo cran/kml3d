@@ -8,7 +8,7 @@
 \description{
   This function builp up an artificial longitudinal data set (joint
   trajectories) an turn them
-  into an object of class \code{\linkS4class{ClusterLongData}}.
+  into an object of class \code{ClusterLongData} (from package \code{longitudinalData}).
 }
 \usage{
 gald3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
@@ -73,7 +73,7 @@ generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
 }
 
 \value{
-  Object of class \code{\linkS4class{ClusterLongData}}.
+  Object of class \code{ClusterLongData} (see package \code{longitudinalData}).
 }
 
 \section{Author}{
@@ -93,7 +93,7 @@ generateArtificialLongData3d(nbEachClusters=50,time=0:10,varNames=c("V","T"),
 }
 
 \seealso{
-  \code{\linkS4class{ClusterLongData3d}}, \code{\link{clusterLongData3d}}, \code{\link{generateArtificialLongData}}
+  \code{\linkS4class{ClusterLongData3d}}, \code{\link{clusterLongData3d}}, \code{\link[kml]{generateArtificialLongData}}
 }
 
 \examples{

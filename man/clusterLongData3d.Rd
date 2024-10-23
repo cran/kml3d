@@ -43,7 +43,7 @@ cld3d(traj, idAll, time, timeInData, varNames, maxNA)
 
 \details{
   \code{clusterLongData3d} construct a object of class
-  \code{\linkS4class{ClusterLongData}}. Two cases can be distinguised:
+  \code{ClusterLongData} (from package \code{kml}). Two cases can be distinguised:
 
   \describe{
     \item{\code{traj} is an \code{array}:}{ the first dimension (line) are

@@ -20,7 +20,7 @@ kml3d(object, nbClusters = 2:6, nbRedrawing = 20, toPlot = "none",
 
 \arguments{
   \item{object}{[ClusterLongData3d]: contains trajectories to clusterize
-    and some \code{\linkS4class{Partition}}.
+    and some \code{Partition} (see package \code{longitudinalData}).
   }
   \item{nbClusters}{[vector(numeric)]: Vector containing the number of clusters
     with which \code{kml3d} must work. By default,
@@ -35,24 +35,24 @@ kml3d(object, nbClusters = 2:6, nbRedrawing = 20, toPlot = "none",
   \item{toPlot}{\code{[character]}: during computation, \code{kml3d} can
     display some graphes. If \code{toPlot="traj"},
     then the trajectories are plot (like with function
-    \code{\link{plot,ClusterLongData}}).
+    \code{plot, ClusterLongData}).
     If \code{toPlot="criterion"}, the quality criterions are plot (like with function
     \code{\link[longitudinalData]{plotCriterion}}). If \code{toPlot="both"}, the graphic
     windows is split in two and both graphs are displayed. If "none",
     there is no graphical display.
   }
-  \item{parAlgo}{\code{[\linkS4class{ParKml}]}: set the option used
+  \item{parAlgo}{\code{[ParKml]} (in package \code{kml}): set the option used
     by \code{kml3d} (like the starting condition, the imputation methods,
     the save frequency, the maximum number of iteration, , the distance
-    used...) See \linkS4class{ParKml} for details. The default values
-  are describe in \code{\link{parKml3d}}.
+    used...) See \code{ParKml} in package \code{kml} for details.
+    The default values are described in \code{\link{parKml3d}}.
   }
 }
 
 \details{
   \code{kml3d} works on object of class \code{ClusterLongData}.
   For each number \code{i} included in \code{nbClusters}, \code{kml3d} computes a
-  \code{\linkS4class{Partition}} then stores it in the field
+  \code{Partition} then stores it in the field
   \code{cX} of the object \code{ClusterLongData} according to its number
   of clusters 'X'.
   The algorithm starts over as many times as it is told in \code{nbRedrawing}. By default, it is executed for 2,
@@ -63,7 +63,7 @@ kml3d(object, nbClusters = 2:6, nbRedrawing = 20, toPlot = "none",
   X clusters. Inside a sublist, the
   \code{Partition} are sorted from the biggest quality criterion to
   the smallest (the best are stored first, using
-  \code{\link{ordered,ListPartition}}), or not.
+  \code{ordered,ListPartition}), or not.
 
   Note that \code{Partition} are saved throughout the algorithm. If the user
   interrupts the execution of \code{kml3d}, the result is not lost. If the
@@ -100,15 +100,15 @@ kml3d(object, nbClusters = 2:6, nbRedrawing = 20, toPlot = "none",
 
 \value{
   A \code{\linkS4class{ClusterLongData3d}} object, after having added
-  some \code{\linkS4class{Partition}} to it.
+  some \code{Partition} to it.
 }
 
 
 
 \seealso{
   Overview: \code{\link{kml3d-package}} \cr
-  Classes : \code{\linkS4class{ClusterLongData3d}}, \code{\linkS4class{Partition}} \cr
-  Methods : \code{\link{clusterLongData3d}}, \code{\link{choice}}
+  Classes : \code{\linkS4class{ClusterLongData3d}}, \code{Partition} in package \code{longitudinalData} \cr
+  Methods : \code{\link{clusterLongData3d}}, \code{\link[kml]{choice}}
 }
 
 \examples{

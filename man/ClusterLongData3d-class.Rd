@@ -11,19 +11,19 @@
 
 \description{
   \code{ClusterLongData3d} is an object containing joint-trajectories and
-  associated \code{\linkS4class{Partition}}.
+  associated \code{Partition} (from package \code{longitudinalData}).
 }
 
 \section{Objects from the Class}{
-  \code{\link{kml3d}} is an algorithm that builds a set of \code{\linkS4class{Partition}}
+  \code{\link{kml3d}} is an algorithm that builds a set of \code{Partition}
   from joint longitudinal data. \code{ClusterLongData3d}
   is the object containing the original joint longitudinal data and all the \code{Partition} that \code{kml3d} finds.\cr
 
   When created, an \code{ClusterLongData3d} object simply contains initial
   data (the joint-trajectories).
   After the execution of \code{kml3d}, it contains
-  the original data and the \code{\linkS4class{Partition}} which has
-  just been find by \code{kml3d}.
+  the original data and the \code{Partition} which has
+  just been found by \code{kml3d}.
 
   Note that if \code{kml3d} is executed several times, every new \code{Partition}
   are added to the original ones, no pre-existing \code{Partition} is erased.
@@ -57,7 +57,7 @@
 
     \item{\code{criterionActif}}{[character]: Store the criterion name
       that will be used by functions that need a single criterion
-      (like \link{plotCriterion} or \link{ordered}).}
+      (like \link[longitudinalData]{plotCriterion} or \link[longitudinalData]{ordered}).}
     \item{\code{initializationMethod}}{[vector(chararcter)]: list all
       the initialization method that has allready been used to find some
       \code{Partition}
@@ -76,21 +76,21 @@
   }
 }
 \section{Extends}{
-  Class \code{\linkS4class{LongData3d}}, directly.
-  Class \code{\linkS4class{ListPartition}}, directly.
+  Class \code{LongData3d} in package\code{longitudinalData}, directly.
+  Class \code{ListPartition} in package\code{longitudinalData}, directly.
 }
 \section{Methods}{
   \describe{
     \item{\code{object['xxx']}}{Get the value of the field
-      \code{xxx}. Inherit from  \code{\linkS4class{LongData3d}} and
-      \code{\linkS4class{ListPartition}}.}
+      \code{xxx}. Inherit from  \code{LongData3d} and
+      \code{ListPartition} (in package \code{longitudinalData}).}
     \item{\code{object['xxx']<-value}}{Set the field \code{xxx} to \code{value}.
-      \code{xxx}. Inherit from  \code{\linkS4class{ListPartition}}.}
+      \code{xxx}. Inherit from  \code{ListPartition}.}
     \item{\code{\link[=plot,ClusterLongData3d]{plot}}}{Display the \code{ClusterLongData3d}, one
-      graph for each variable, according to a \code{\linkS4class{Partition}}.}
+      graph for each variable, according to a \code{Partition}.}
     \item{\code{\link{plot3d}}}{Display two
       variables of the \code{ClusterLongData3d} in 3D according to a
-      \code{\linkS4class{Partition}}.}
+      \code{Partition}.}
     \item{\code{\link{plot3dPdf}}}{Export the AZY code for displaying two
       variables of the \code{ClusterLongData3d} in a 3D pdf graph.}
   }

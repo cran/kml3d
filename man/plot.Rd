@@ -10,8 +10,10 @@
 \title{ ~ Function: plot for ClusterLongData3d ~ }
 \description{
   \code{plot} the trajectories of an object
-  \code{\linkS4class{ClusterLongData3d}} relativly to a
-  \code{\linkS4class{Partition}}. One graphe for each variable is displayed.
+  %\code{\linkS4class{ClusterLongData3d}} relativly to a
+  %\code{\linkS4class{Partition}}. 
+  \code{ClusterLongData} relatively to a \code{Partition}.
+  One graph for each variable is displayed.
 }
 \usage{
 \S4method{plot}{ClusterLongData3d,ANY}(x,y=NA,parTraj=parTRAJ(),parMean=parMEAN(),
@@ -36,12 +38,12 @@
     possible values, the option \code{col="clusters"} can be use to color the individual
     trajectories according to their clusters (exemple:
     \code{parTraj=parTRAJ(type="o",col="clusters")}). See
-    \code{\linkS4class{ParLongData}} for details.}
+    \code{ParLongData} in package \code{longitudinalData} for details.}
 
   \item{parMean}{\code{[ParLongData]}: Specification of the plotting
     parameters of the mean trajectories (only when y is non missing). Fields that can be changes are
     'type','col','pch','pchPeriod' and 'cex'. See
-    \code{\linkS4class{ParLongData}} for details.}
+    \code{ParLongData} in package \code{longitudinalData} for details.}
 
 %  \item{parWin}{\code{[parWindin]}: Set the graphical display of
 %    the windows. See \code{\linkS4class{ParWindows}} for details.}
@@ -75,7 +77,8 @@
 
 \details{
   \code{plot} the trajectories of an object \code{\linkS4class{ClusterLongData3d}} relativly
-  to the 'best' \code{\linkS4class{Partition}}, or to the
+  %to the 'best' \code{\linkS4class{Partition}}, or to the
+  to the 'best' \code{Partition}, or to the
   \code{Partition} define by \code{y}.
 
   Graphical option concerning the individual trajectory (col, type, pch
@@ -83,7 +86,7 @@
   Graphical option concerning the cluster mean trajectory (col, type, pch,
   pchPeriod and cex) can be change using \code{parMean}. For more
   detail on  \code{parTraj} and  \code{parMean}, see object of
-  class \code{\linkS4class{ParLongData}}.
+  class \code{ParLongData} in package \code{longitudinalData}.
 }
 
 
@@ -94,7 +97,8 @@
 \seealso{
   Overview: \code{\link{kml3d-package}} \cr
   Classes : \code{\linkS4class{ClusterLongData3d}} \cr
-  Plot : \code{\link{plotTraj}}, \code{\link{plotCriterion}}
+  Plot : \code{\link[kml]{plotTraj}}, 
+         \code{\link[longitudinalData]{plotCriterion}}
 }
 
 \examples{

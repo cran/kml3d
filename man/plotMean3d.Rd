@@ -8,7 +8,7 @@
 \title{ ~ Function: plotMeans3d for ClusterLongData3d ~ }
 \description{
   Plot the means of two variables of a \code{\linkS4class{ClusterLongData3d}} object in 3D
-  relatively to a \code{\linkS4class{Partition}}.
+  relatively to a \code{Partition} (from package in \code{longitudinalData}).
 }
 
 \usage{
@@ -31,12 +31,12 @@
   \item{varZ}{\code{[numeric]} or \code{[character]}: either the
     number or the name of the second variable to display. 2 by default.}
   \item{parTraj}{\code{[ParLongData]}: Set the graphical parameters
-    used to plot the trajectories of the \code{ClusterLongData3d}. See \code{\linkS4class{ParLongData}}
-    for details.}
+    used to plot the trajectories of the \code{ClusterLongData3d}. 
+    See \code{ParLongData} in package \code{longitudinalData} for details.}
   \item{parMean}{\code{[ParLongData]}:  Set the graphical parameters
     used to plot the mean trajectories of each clusters \code{ClusterLongData3d}
-    (only when \code{y} is non missing). See \code{\linkS4class{ParLongData}}
-    for details.}
+    (only when \code{y} is non missing). 
+    See \code{ParLongData} in package \code{longitudinalData} for details.}
 %  \item{nbSample}{\code{[numeric]}: Graphical display of huge sample can
 %    be time consumming. This parameters fixe the maximum numbre of
 %    trajectories (randomly chosen) that will be drawn.}

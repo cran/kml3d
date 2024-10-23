@@ -4,7 +4,7 @@
 \title{ ~ Function: parKml3d ~}
 
 \description{
-  \code{parKml3d} is a constructor of object \code{\linkS4class{ParKml}}
+  \code{parKml3d} is a constructor of object \code{ParKml} (from package \code{kml})
   that provide adequate default value for the use of function \code{\link{kml3d}}.
 }
 \usage{
@@ -27,7 +27,7 @@ parKml3d(saveFreq = 100, maxIt = 200, imputationMethod = "copyMean",
   \item{imputationMethod}{\code{[character]}: the calculation of quality
     criterion can not be done if some value are
     missing. \code{imputationMethod} define the method use to impute the
-    missing value. See \code{\link{imputation}} for detail.
+    missing value. See \code{\link[longitudinalData]{imputation}} for detail.
   }
   \item{distanceName}{\code{[character]}: name of the
     \code{distance} used by k-means. If the \code{distanceName} is "euclidean3d", a compiled optimized version specificaly design for
@@ -69,18 +69,18 @@ parKml3d(saveFreq = 100, maxIt = 200, imputationMethod = "copyMean",
     automaticaly scaled (using the function \code{\link{scale}} with
     default values) before the execution of k-means on joint
     trajectories. Then the data
-    will be restore (using the function \code{\link{restoreRealData}})
+    will be restore (using the function \code{\link[longitudinalData]{restoreRealData}})
     just before the end of the function \code{\link[kml3d]{kml3d}}. This option
-    has no effect on \code{\link{kml}}.
+    has no effect on \code{\link[kml]{kml}}.
   }
 }
 
 \details{
-  \code{parKml3d} is a constructor of object \code{\linkS4class{ParKml}}
+  \code{parKml3d} is a constructor of object \code{ParKml} (from package \code{kml})
   that provide adequate default value for the use of function \code{\link{kml3d}}.
 }
 \value{
-  An object \code{\linkS4class{ParKml}}.
+  An object \code{ParKml} (see package \code{kml}).
 }
 
 

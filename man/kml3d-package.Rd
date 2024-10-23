@@ -60,8 +60,8 @@
   Once an object of class \code{\linkS4class{ClusterLongData3d}} has been created, the algorithm
   \code{\link{kml3d}} can be run.
 
-  Starting with a \code{ClusterLongData3d}, \code{kml3d} built several \code{\linkS4class{Partition}}.
-  A object of class \code{Partition} is a partition of trajectories
+  Starting with a \code{ClusterLongData3d}, \code{kml3d} built several \code{Partitions} (see package \code{longitudinalData}).
+  An object of class \code{Partition} is a partition of trajectories
   into subgroups. It also contains some information like the
   percentage of trajectories contained in each group or some quality critetion (like the Calinski &
   Harabasz).\cr
@@ -86,7 +86,7 @@
   When \code{\link{kml3d}} has constructed some
   \code{Partition}, the user can examine them one by one and choose
   to export some. This can be done via function
-  \code{\link{choice}}. \code{choice} opens a graphic windows showing
+  \code{\link[kml]{choice}}. \code{choice} opens a graphic windows showing
   various information including the trajectories cluterized by a specific
   \code{Partition}.
 
@@ -106,7 +106,7 @@
   graphical representation turn using the mouse. \code{\link{plot3dPdf}} build an
   \code{\link[misc3d:makeTriangles]{Triangles}} object. These kind of
   object can be include in a \code{pdf} file using
-  \code{\link{saveTrianglesAsASY}} and the software
+  \code{\link[longitudinalData]{saveTrianglesAsASY}} and the software
   \code{asymptote}. Once again, it is possible to make the image in the
   pdf file move using the mouse -so the reader gets real 3D-.
 }
